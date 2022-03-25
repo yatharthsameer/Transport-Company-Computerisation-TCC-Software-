@@ -5,11 +5,11 @@ from utility import checkLogin
 import utility
 
 
-class loginScreen(QMainWindow):
+class loginScreen(QDialog):
     def __init__(self):
         super(loginScreen, self).__init__()
         self.setObjectName("Login")
-        loadUi('src/loginscr.ui', self)
+        loadUi('ui/loginscr.ui', self)
         self.loginButton.clicked.connect(self.login)
         self.passwordlineEdit.returnPressed.connect(self.login)
         self.passwordlineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -38,11 +38,11 @@ class loginScreen(QMainWindow):
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
-class employeeScreen(QMainWindow):
+class employeeScreen(QDialog):
     def __init__(self):
         super(employeeScreen, self).__init__()
         self.setObjectName("Employee")
-        loadUi('src/employeescr.ui', self)
+        loadUi('ui/employeescr.ui', self)
         self.logoutButton.clicked.connect(self.goBack)
         self.show()
 
@@ -52,11 +52,11 @@ class employeeScreen(QMainWindow):
         widget.setCurrentIndex(widget.currentIndex() - 1)
 
 
-class managerScreen(QMainWindow):
+class managerScreen(QDialog):
     def __init__(self):
         super(managerScreen, self).__init__()
         self.setObjectName("Manager")
-        loadUi('src/managerscr.ui', self)
+        loadUi('ui/managerscr.ui', self)
         self.logoutButton.clicked.connect(self.goBack)
         self.show()
 
