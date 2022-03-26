@@ -15,7 +15,14 @@ def distance(city1, city2):
     return geodesic((location1.latitude, location1.longitude), (location2.latitude, location2.longitude)).km
 
 def closestBranch(address):
-    pass
+    city = address.split(', ')[-1]
+    minDistance = 100000
+    closestBranch = ''
+    for branch in branchDB.find():
+        if distance(city, branch['Location']) < minDistance:
+            minDistance = distance(city, branch['Location'])
+            closestBranch = branch['Location']
+    return closestBranch
 
 
 class Branch:
@@ -30,7 +37,13 @@ class Branch:
         global settings
         id = settings.find_one({'_id':0})['BranchID']
         settings.update_one({'_id':0}, {'$set':{'BranchID':id+1}})
-        branchDB.insert_one({'_id': id, 'Location':self.location, 'Address':self.address, 'Number Of Employees': self.numOfEmployees, 'Employees': self.employees, 'Revenue': self.revenue})
+        branchDB.insert_one({
+            '_id': id, 
+            'Location':self.location, 
+            'Address':self.address, 
+            'Number Of Employees': self.numOfEmployees, 
+            'Employees': self.employees, 
+            'Revenue': self.revenue})
 
     def convertFromDict(dict):
         return Branch(dict['Location'], dict['Address'], dict['Employees'], dict['Number Of Employees'], dict['Revenue'])

@@ -37,5 +37,6 @@ def dispatchTruck(truckID) -> None:
     utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Busy', 'Last Dispatch Date': utility.today()}})
 
 def unloadTruck(truckID) -> None:
-    loc = utility.truckDB.find_one({'_id': truckID})['Next Destination']
-    utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Available', 'Consignments Loaded': [], 'Volume Loaded': 0, 'Next Destination': 'NA', 'Location': loc}})
+    truck = utility.truckDB.find_one({'_id': truckID})
+    loc = truck['Next Destination']
+    utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Available', 'Consignments Loaded': [], 'Volume Loaded': 0, 'Next Destination': 'NA', 'Location': loc, 'Total Consignments Delivered': truck['Total Consignments Delivered'] + 1}})

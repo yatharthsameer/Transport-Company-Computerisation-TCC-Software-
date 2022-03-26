@@ -1,3 +1,4 @@
+from math import log
 import pymongo
 import utility
 from truck import dispatchTruck
@@ -43,12 +44,20 @@ def dispatchConsignment(consignID, truckID) -> None:
     utility.consignDB.update_one({'_id': consignID}, {'$set': {'Date Of Dispatch': utility.today(), 'Delivered By Truck': truckID, 'At Branch': 'NA', 'Status': 'Dispatched'}})
 
 def loadConsignment(consignID, truckID) -> None:
-    curVol = utility.truckDB.find_one({'_id': truckID})['Volume Loaded']
+    truck = utility.truckDB.find_one({'_id': truckID})
+    curVol = truck['Volume Loaded']
     if curVol > 500:
         dispatchTruck(truckID)
         return True
-    curVol += utility.consignDB.find_one({'_id': consignID})['Volume']
-    utility.consignDB.update_one({'_id': consignID}, {'$set': {'Status': 'Loaded', 'Delivered By Truck': truckID}})
+    consign = utility.consignDB.find_one({'_id': consignID})
+    newVol = consign['Volume']
+    if truck['Next Destination'] == 'NA':
+        truck['Next Destination'] = utility.closestBranch(consign['Sender Address'])
+        utility.truckDB.update_one({'_id': truckID}, {'$set': {'Next Destination': truck['Next Destination']}})
+    cost = int(newVol * log(utility.distance(consign['At Branch'], truck['Next Destination'])))
+    curVol += newVol
+    utility.consignDB.update_one({'_id': consignID}, {'$set': {'Status': 'Loaded', 'Delivered By Truck': truckID, 'Cost': cost}})
+    utility.branchDB.update_one({'Location': consign['At Branch']}, {'$set': {'Revenue': utility.branchDB.find_one({'Location': consign['At Branch']})['Revenue'] + cost}})
     utility.truckDB.update_one({'_id': truckID}, {'$set': {'Volume Loaded': curVol}})
     if curVol > 500:
         dispatchTruck(truckID)
