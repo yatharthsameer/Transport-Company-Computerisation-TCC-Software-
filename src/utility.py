@@ -1,7 +1,7 @@
 import pymongo
 import random
 from employee import changePassword
-from consign import loadConsignment
+import consign
 import string
 from datetime import date
 from geopy.geocoders import Nominatim
@@ -95,7 +95,7 @@ def loadUnloadedConsignments(branch):
     for consignment in consignments:
         if curTruckID is None:
             return
-        if loadConsignment(consignment['_id'], curTruckID):
+        if consign.loadConsignment(consignment['_id'], curTruckID):
             curTruckID = nextEmptyTruckID(branch)
 
 database = None
