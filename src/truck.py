@@ -11,5 +11,9 @@ class Truck:
         
 
     def convertToDictAndUpload(self) -> None:
-        utility.truckDB.insert_one({'numberPlate': self.numberPlate, 'CurrentLocation': self.CurrentLocation, 'DriverAsigned': self.DriverAsigned, 'Driver': self.Driver})
+        utility.truckDB.insert_one({
+            'numberPlate': self.numberPlate, 
+            'CurrentLocation': self.CurrentLocation, 
+            'DriverAsigned': self.DriverAsigned, 
+            'Driver': self.Driver})
         
