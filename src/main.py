@@ -11,15 +11,15 @@ class loginScreen(QDialog):
         self.setObjectName("Login")
         loadUi('ui/loginscr.ui', self)
         self.loginButton.clicked.connect(self.login)
-        self.passwordlineEdit.returnPressed.connect(self.login)
-        self.passwordlineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.passwordLineEdit.returnPressed.connect(self.login)
+        self.passwordLineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
         self.show()
 
     def login(self):
-        access = checkLogin(self.usernamelineEdit.text(), self.passwordlineEdit.text())
-        self.usernamelineEdit.setText("")
-        self.passwordlineEdit.setText("")
-        self.usernamelineEdit.setFocus()
+        access = checkLogin(self.usernameLineEdit.text(), self.passwordLineEdit.text())
+        self.usernameLineEdit.setText("")
+        self.passwordLineEdit.setText("")
+        self.usernameLineEdit.setFocus()
         if access == True:
             self.accept()
         elif access == False:

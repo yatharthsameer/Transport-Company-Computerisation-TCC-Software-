@@ -10,7 +10,6 @@ class Employee:
         self.address = address
         self.branch = branch
         self.dateOfJoining = utility.today()
-        self.id = None
 
     def convertToDictAndUpload(self) -> None:
         id = utility.settings.find_one({'_id': 0})['EmployeeID']

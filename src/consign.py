@@ -13,7 +13,6 @@ class Consign:
         self.volume = volume
         self.dateOfArrival = utility.today()
         self.dateOfDispatch = 'NA'
-        self.id = None
         self.deliveredByTruck = 'NA'
         self.cost = 0
         self.status = branch

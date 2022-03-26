@@ -42,7 +42,7 @@ background-color: white;
     <rect>
      <x>150</x>
      <y>350</y>
-     <width>211</width>
+     <width>251</width>
      <height>61</height>
     </rect>
    </property>
@@ -75,9 +75,9 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>560</y>
-     <width>161</width>
-     <height>21</height>
+     <y>550</y>
+     <width>191</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -91,10 +91,10 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="branchHeading">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>650</y>
-     <width>91</width>
-     <height>31</height>
+     <x>210</x>
+     <y>640</y>
+     <width>111</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -110,8 +110,8 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
     <rect>
      <x>210</x>
      <y>500</y>
-     <width>101</width>
-     <height>16</height>
+     <width>111</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -126,9 +126,9 @@ font: 25 16pt &quot;Calibri&quot;;</string>
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>590</y>
-     <width>251</width>
-     <height>31</height>
+     <y>570</y>
+     <width>281</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -160,9 +160,9 @@ font: 25 16pt &quot;Calibri&quot;;</string>
    <property name="geometry">
     <rect>
      <x>670</x>
-     <y>70</y>
-     <width>181</width>
-     <height>81</height>
+     <y>60</y>
+     <width>211</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -178,9 +178,9 @@ font: 75 48pt &quot;League Spartan&quot;;
    <property name="geometry">
     <rect>
      <x>660</x>
-     <y>180</y>
-     <width>481</width>
-     <height>51</height>
+     <y>170</y>
+     <width>581</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -225,7 +225,7 @@ color: #808080</string>
     <rect>
      <x>660</x>
      <y>250</y>
-     <width>111</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
@@ -242,7 +242,7 @@ font: 25 14pt &quot;Calibri&quot;;</string>
     <rect>
      <x>660</x>
      <y>320</y>
-     <width>141</width>
+     <width>161</width>
      <height>16</height>
     </rect>
    </property>
@@ -297,7 +297,7 @@ color: #808080</string>
 font: 25 14pt &quot;Calibri&quot;;</string>
    </property>
    <property name="text">
-    <string>Sender MobileNo:</string>
+    <string>Sender Mobile No:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="senderMobileNoLineEdit">
@@ -334,7 +334,7 @@ color: #808080</string>
     <rect>
      <x>660</x>
      <y>460</y>
-     <width>121</width>
+     <width>141</width>
      <height>16</height>
     </rect>
    </property>
@@ -380,7 +380,7 @@ color: #808080</string>
     <rect>
      <x>660</x>
      <y>530</y>
-     <width>141</width>
+     <width>161</width>
      <height>16</height>
     </rect>
    </property>
@@ -426,7 +426,7 @@ color: #808080</string>
     <rect>
      <x>660</x>
      <y>600</y>
-     <width>151</width>
+     <width>171</width>
      <height>16</height>
     </rect>
    </property>
@@ -435,7 +435,7 @@ color: #808080</string>
 font: 25 14pt &quot;Calibri&quot;;</string>
    </property>
    <property name="text">
-    <string>Receiver MobileNo:</string>
+    <string>Receiver Mobile No:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="receiverMobileNoLineEdit">
@@ -518,8 +518,8 @@ color: #808080</string>
     <rect>
      <x>650</x>
      <y>750</y>
-     <width>191</width>
-     <height>51</height>
+     <width>231</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -532,7 +532,7 @@ border-radius: 15px</string>
     <string>Enter Details</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="forgotpasswordButton">
+  <widget class="QPushButton" name="logoutButton">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -595,7 +595,7 @@ background-color: transparent</string>
   <zorder>label_9</zorder>
   <zorder>volumeLineEdit</zorder>
   <zorder>enterDetailsButton</zorder>
-  <zorder>forgotpasswordButton</zorder>
+  <zorder>logoutButton</zorder>
  </widget>
  <resources/>
  <connections/>
