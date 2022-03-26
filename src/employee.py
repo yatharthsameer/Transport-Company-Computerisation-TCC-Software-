@@ -14,6 +14,10 @@ class Employee:
     def convertToDictAndUpload(self) -> None:
         id = utility.settings.find_one({'_id': 0})['EmployeeID']
         utility.settings.update_one({'_id': 0}, {'$set': {'EmployeeID': id + 1}})
+        empArr = utility.branchDB.find_one({'Location': self.branch})['Employees']
+        empArr.append(id)
+        empNo = len(empArr)
+        utility.branchDB.update_one({'Location': self.branch}, {'$set': {'Number Of Employees': empNo, 'Employees': empArr}})
         utility.employeeDB.insert_one({
             '_id': id, 
             'Name': self.name, 
@@ -23,3 +27,7 @@ class Employee:
             'Branch': self.branch, 
             'Date Of Joining': self.dateOfJoining,
             'Password': utility.generateRandomString()})
+
+
+def changePassword(employeeMail, newPassword) -> None:
+    utility.employeeDB.update_one({'Email': employeeMail}, {'$set': {'Password': newPassword}})

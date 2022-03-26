@@ -1,5 +1,7 @@
 import pymongo
 import random
+from employee import changePassword
+from consign import loadConsignment
 import string
 from datetime import date
 
@@ -50,11 +52,20 @@ def setupDB():
 def mailPassword(email):
     try:
         # mail password
-        password = employeeDB.find_one({'email': email})['password']
+        password = generateRandomString()
+        changePassword(email, password)
         return True
     except:
         return False
 
+def nextEmptyTruckID(branch):
+    return truckDB.find_one({'Branch': branch, 'Status': 'Empty'})['_id']
+
+def loadUnloadedConsignments(branch):
+    consignments = consignDB.find({'Branch': branch, 'Status': 'Unloaded'})
+    for consignment in consignments:
+        if loadConsignment(consignment['_id']):
+            return
 
 database = None
 settings = None

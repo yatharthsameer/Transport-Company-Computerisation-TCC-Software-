@@ -1,5 +1,6 @@
 import pymongo
 import utility
+from consign import dispatchConsignment
 
 
 class Truck:
@@ -23,5 +24,18 @@ class Truck:
             'Driver Phone': self.driverNumber,
             'Consignments Loaded': [],
             'Status': 'Available',
-            'Next Destination': 'NA'})
-        
+            'Next Destination': 'NA',
+            'Volume Loaded': 0})
+
+
+def changeDriver(newDriverName, newDriverPhone, truckPlateNumber) -> None:
+    utility.truckDB.update_one({'Number Plate': truckPlateNumber}, {'$set': {'Current Driver': newDriverName, 'Driver Phone': newDriverPhone}})
+
+def dispatchTruck(truckID) -> None:
+    for consignID in utility.truckDB.find_one({'_id': truckID})['Consignments Loaded']:
+        dispatchConsignment(consignID, truckID)
+    utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Busy', 'Last Dispatch Date': utility.today()}})
+
+def unloadTruck(truckID) -> None:
+    loc = utility.truckDB.find_one({'_id': truckID})['Next Destination']
+    utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Available', 'Consignments Loaded': [], 'Volume Loaded': 0, 'Next Destination': 'NA', 'Location': loc}})
