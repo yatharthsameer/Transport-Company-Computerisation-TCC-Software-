@@ -47,6 +47,14 @@ def setupDB():
     consignDB = database['Consignment']
     truckDB = database['Truck']
 
+def mailPassword(email):
+    try:
+        # mail password
+        password = employeeDB.find_one({'email': email})['password']
+        return True
+    except:
+        return False
+
 
 database = None
 settings = None

@@ -11,6 +11,7 @@ class loginScreen(QDialog):
         self.setObjectName("Login")
         loadUi('ui/loginscr.ui', self)
         self.loginButton.clicked.connect(self.login)
+        self.forgotpasswordButton.clicked.connect(self.forgotpassword)
         self.passwordLineEdit.returnPressed.connect(self.login)
         self.passwordLineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
         self.show()
@@ -36,6 +37,13 @@ class loginScreen(QDialog):
         currentWindow = managerScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    def forgotpassword(self):
+        res = utility.mailPassword(self.usernameLineEdit.text())
+        if res:
+            QMessageBox.information(self, "Password Recovery", "Password has been sent to your email")
+        else:
+            QMessageBox.warning(self, "Password Recovery", "Invalid username")
 
 
 class employeeScreen(QDialog):
