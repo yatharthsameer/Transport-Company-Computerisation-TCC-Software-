@@ -41,14 +41,14 @@ class Consign:
 
 
 def dispatchConsignment(consignID, truckID) -> None:
+    # update dispatch date, delivered by truck, status, At Branch
+    # BILL HERE
     utility.consignDB.update_one({'_id': consignID}, {'$set': {'Date Of Dispatch': utility.today(), 'Delivered By Truck': truckID, 'At Branch': 'NA', 'Status': 'Dispatched'}})
 
 def loadConsignment(consignID, truckID) -> None:
+    # update truck volume, next destination if NA, calculate cost, update branch revenue, consign status, delivered by 
     truck = utility.truckDB.find_one({'_id': truckID})
     curVol = truck['Volume Loaded']
-    if curVol > 500:
-        dispatchTruck(truckID)
-        return True
     consign = utility.consignDB.find_one({'_id': consignID})
     newVol = consign['Volume']
     if truck['Next Destination'] == 'NA':

@@ -84,13 +84,19 @@ def mailPassword(email):
         return False
 
 def nextEmptyTruckID(branch):
-    return truckDB.find_one({'Branch': branch, 'Status': 'Empty'})['_id']
+    truck =truckDB.find_one({'Branch': branch, 'Next Destination': 'NA'}) 
+    if truck is not None:
+        return truck['_id']
+    return None
 
 def loadUnloadedConsignments(branch):
-    consignments = consignDB.find({'Branch': branch, 'Status': 'Unloaded'})
+    consignments = consignDB.find({'At Branch': branch, 'Status': 'Unloaded'})
+    curTruckID = nextEmptyTruckID(branch)
     for consignment in consignments:
-        if loadConsignment(consignment['_id']):
+        if curTruckID is None:
             return
+        if loadConsignment(consignment['_id'], curTruckID):
+            curTruckID = nextEmptyTruckID(branch)
 
 database = None
 settings = None
