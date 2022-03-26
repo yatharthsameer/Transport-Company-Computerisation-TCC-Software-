@@ -125,7 +125,7 @@ color: rgb(222, 24, 24)</string>
      <string>TCCS</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="usernamelineEdit">
+   <widget class="QLineEdit" name="usernameLineEdit">
     <property name="geometry">
      <rect>
       <x>910</x>
@@ -136,8 +136,11 @@ color: rgb(222, 24, 24)</string>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI</family>
-      <pointsize>10</pointsize>
+      <family>Calibri</family>
+      <pointsize>12</pointsize>
+      <weight>3</weight>
+      <italic>false</italic>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -146,10 +149,12 @@ border-style: outset;
 border-width: 2px;
 border-radius: 15px;
 border-color: #fff3f3;
-padding: 4px</string>
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="passwordlineEdit">
+   <widget class="QLineEdit" name="passwordLineEdit">
     <property name="geometry">
      <rect>
       <x>910</x>
@@ -160,7 +165,11 @@ padding: 4px</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>11</pointsize>
+      <family>Calibri</family>
+      <pointsize>12</pointsize>
+      <weight>3</weight>
+      <italic>false</italic>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -169,7 +178,9 @@ border-style: outset;
 border-width: 2px;
 border-radius: 15px;
 border-color: #fff3f3;
-padding: 4px</string>
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
     </property>
    </widget>
    <widget class="QLabel" name="text1_right">

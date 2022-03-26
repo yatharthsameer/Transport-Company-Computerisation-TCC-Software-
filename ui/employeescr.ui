@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1351</width>
+    <height>840</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#Dialog{
+background-color: white;
+}</string>
+  </property>
+  <widget class="QLabel" name="user_png">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>100</y>
+     <width>241</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>user.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="employee_name">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>350</y>
+     <width>211</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+font: 75 24pt &quot;League Spartan&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Abhinav Sen</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="employeeIDHeading">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>460</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+font: 75 16pt &quot;League Spartan&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Employee ID:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Emailaddress_heading">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>560</y>
+     <width>161</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+font: 75 16pt &quot;League Spartan&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Email address:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="branchHeading">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>650</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+font: 75 16pt &quot;League Spartan&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Branch: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="employeeIDLabel">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>500</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+font: 25 16pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>20CS10003</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="emailIDLabel">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>590</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+font: 25 16pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>abhinavsen2002@gmail.com</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="branchLabel">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>670</y>
+     <width>211</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+font: 25 16pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;No 28 Gupta Road,&lt;br/&gt;Anna Nagar,&lt;br/&gt;Chennai, 600010&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>70</y>
+     <width>181</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(222, 24, 24);
+font: 75 48pt &quot;League Spartan&quot;;
+</string>
+   </property>
+   <property name="text">
+    <string>TCCS</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>180</y>
+     <width>481</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(222, 24,24);
+font: 75 28pt &quot;League Spartan&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Add Consignment Details</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="senderNameLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>270</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>12</pointsize>
+     <weight>3</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>250</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Sender Name:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>320</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Sender's Address</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="senderAddressLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>340</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>12</pointsize>
+     <weight>3</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>390</y>
+     <width>201</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Sender MobileNo:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="senderMobileNoLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>410</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>12</pointsize>
+     <weight>3</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>460</y>
+     <width>121</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Receiver Name:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="receiverNameLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>480</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>12</pointsize>
+     <weight>3</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>530</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Receiver Address:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="receiverAddressLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>550</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>12</pointsize>
+     <weight>3</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>600</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Receiver MobileNo:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="receiverMobileNoLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>620</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>12</pointsize>
+     <weight>3</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>670</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Volume:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="volumeLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>690</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>12</pointsize>
+     <weight>3</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="enterDetailsButton">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>750</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 20pt &quot;League Spartan&quot;;
+color: white;
+background-color: rgb(222, 24, 24);
+border-radius: 15px</string>
+   </property>
+   <property name="text">
+    <string>Enter Details</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="forgotpasswordButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 25 15pt &quot;Calibri&quot;;
+color: white;
+background-color: transparent</string>
+   </property>
+   <property name="text">
+    <string>&lt;-logout</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>-270</x>
+     <y>0</y>
+     <width>811</width>
+     <height>841</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>truck2.jpg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>label_10</zorder>
+  <zorder>user_png</zorder>
+  <zorder>employee_name</zorder>
+  <zorder>employeeIDHeading</zorder>
+  <zorder>Emailaddress_heading</zorder>
+  <zorder>branchHeading</zorder>
+  <zorder>employeeIDLabel</zorder>
+  <zorder>emailIDLabel</zorder>
+  <zorder>branchLabel</zorder>
+  <zorder>label</zorder>
+  <zorder>label_2</zorder>
+  <zorder>senderNameLineEdit</zorder>
+  <zorder>label_3</zorder>
+  <zorder>label_4</zorder>
+  <zorder>senderAddressLineEdit</zorder>
+  <zorder>label_5</zorder>
+  <zorder>senderMobileNoLineEdit</zorder>
+  <zorder>label_6</zorder>
+  <zorder>receiverNameLineEdit</zorder>
+  <zorder>label_7</zorder>
+  <zorder>receiverAddressLineEdit</zorder>
+  <zorder>label_8</zorder>
+  <zorder>receiverMobileNoLineEdit</zorder>
+  <zorder>label_9</zorder>
+  <zorder>volumeLineEdit</zorder>
+  <zorder>enterDetailsButton</zorder>
+  <zorder>forgotpasswordButton</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
