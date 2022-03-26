@@ -22,4 +22,5 @@ class Employee:
             'Email': self.email, 
             'Address': self.address, 
             'Branch': self.branch, 
-            'Date Of Joining': self.dateOfJoining})
+            'Date Of Joining': self.dateOfJoining,
+            'Password': utility.generateRandomString()})
