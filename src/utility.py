@@ -4,6 +4,18 @@ from employee import changePassword
 from consign import loadConsignment
 import string
 from datetime import date
+from geopy.geocoders import Nominatim
+from geopy.distance import geodesic
+
+geolocator = Nominatim(user_agent='TCC')
+
+def distance(city1, city2):
+    location1 = geolocator.geocode(city1)
+    location2 = geolocator.geocode(city2)
+    return geodesic((location1.latitude, location1.longitude), (location2.latitude, location2.longitude)).km
+
+def closestBranch(address):
+    pass
 
 
 class Branch:

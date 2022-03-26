@@ -142,7 +142,7 @@ font: 25 16pt &quot;Calibri&quot;;</string>
   <widget class="QLabel" name="branchLabel">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>160</x>
      <y>670</y>
      <width>211</width>
      <height>111</height>
@@ -159,7 +159,7 @@ font: 25 16pt &quot;Calibri&quot;;</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>670</x>
      <y>60</y>
      <width>211</width>
      <height>91</height>
@@ -569,26 +569,6 @@ background-color: transparent</string>
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="enterDetailsButton_2">
-   <property name="geometry">
-    <rect>
-     <x>1290</x>
-     <y>10</y>
-     <width>51</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">
-font: 75 20pt &quot;Calibri&quot;;
-color: white;
-background-color: rgb(222, 24, 24);
-border-radius: 25px</string>
-   </property>
-   <property name="text">
-    <string>&lt;-</string>
-   </property>
-  </widget>
   <zorder>label_10</zorder>
   <zorder>user_png</zorder>
   <zorder>employee_name</zorder>
@@ -616,7 +596,6 @@ border-radius: 25px</string>
   <zorder>volumeLineEdit</zorder>
   <zorder>enterDetailsButton</zorder>
   <zorder>logoutButton</zorder>
-  <zorder>enterDetailsButton_2</zorder>
  </widget>
  <resources/>
  <connections/>
