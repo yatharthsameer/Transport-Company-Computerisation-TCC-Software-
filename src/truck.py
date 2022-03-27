@@ -34,7 +34,7 @@ def changeDriver(newDriverName, newDriverPhone, truckPlateNumber) -> None:
 def dispatchTruck(truckID) -> None:
     for consignID in utility.truckDB.find_one({'_id': truckID})['Consignments Loaded']:
         consign.dispatchConsignment(consignID, truckID)
-    utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Busy', 'Last Dispatch Date': utility.today()}})
+    utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Enroute', 'Last Dispatch Date': utility.today()}})
 
 def unloadTruck(truckID) -> None:
     truck = utility.truckDB.find_one({'_id': truckID})

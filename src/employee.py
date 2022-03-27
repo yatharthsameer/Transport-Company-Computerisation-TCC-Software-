@@ -1,6 +1,5 @@
 import pymongo
 import utility
-from mail import sendMail
 
 
 class Employee:
@@ -32,4 +31,3 @@ class Employee:
 
 def changePassword(employeeMail, newPassword) -> None:
     utility.employeeDB.update_one({'Email': employeeMail}, {'$set': {'Password': newPassword}})
-    sendMail(employeeMail, False, newPassword)

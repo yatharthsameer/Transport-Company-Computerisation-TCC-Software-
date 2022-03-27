@@ -6,6 +6,7 @@ import string
 from datetime import date
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
+from mail import sendMail
 
 geolocator = Nominatim(user_agent='TCC')
 
@@ -79,24 +80,29 @@ def mailPassword(email):
         # mail password
         password = generateRandomString()
         changePassword(email, password)
+        sendMail(email, False, password)
         return True
     except:
         return False
 
-def nextEmptyTruckID(branch):
-    truck =truckDB.find_one({'Branch': branch, 'Next Destination': 'NA'}) 
+def nextAvailableTruckID(branch, consign):
+    nearestBranch = closestBranch(consign['Reciever Address'])
+    truck = truckDB.find_one({'Branch': branch, 'Next Destination': nearestBranch, 'Status': 'Available'}) 
+    if truck is not None:
+        return truck['_id']
+    truck = truckDB.find_one({'Branch': branch, 'Next Destination': 'NA', 'Status': 'Available'}) 
     if truck is not None:
         return truck['_id']
     return None
 
 def loadUnloadedConsignments(branch):
     consignments = consignDB.find({'At Branch': branch, 'Status': 'Unloaded'})
-    curTruckID = nextEmptyTruckID(branch)
+    curTruckID = nextAvailableTruckID(branch)
     for consignment in consignments:
         if curTruckID is None:
             return
         if consign.loadConsignment(consignment['_id'], curTruckID):
-            curTruckID = nextEmptyTruckID(branch)
+            curTruckID = nextAvailableTruckID(branch, consignment)
 
 database = None
 settings = None
