@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
@@ -39,33 +38,3 @@ def bill(consignment):
     ptext = '<font size=12>{}</font>'.format("Total Cost Incurred (INR): ", " ", consignment['Cost'])
     Story.append(Paragraph(ptext, styles["Normal"]))
     doc.build(Story)
-=======
-# Python program to create
-# a pdf file
-
-
-from fpdf import FPDF
-
-
-# save FPDF() class into a
-# variable pdf
-pdf = FPDF()
-
-# Add a page
-pdf.add_page()
-
-# set style and size of font
-# that you want in the pdf
-pdf.set_font("Arial", size=15)
-
-# create a cell
-pdf.cell(200, 10, txt="hello everyone",
-         ln=1, align='C')
-
-# add another cell
-pdf.cell(200, 10, txt="This is a pdf file",
-         ln=2, align='C')
-
-# save the pdf with name .pdf
-pdf.output("Hello.pdf")
->>>>>>> d6a76a4654aaa7d65de0ae9ea8a534bc9ab23b13
