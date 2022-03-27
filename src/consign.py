@@ -6,13 +6,14 @@ from bill import bill
 
 
 class Consign:
-    def __init__(self, SenderName, ReceiverName, SenderPhone, ReceiverPhone, SenderAddress, ReceiverAddress,  volume, branch) -> None:
+    def __init__(self, SenderName, ReceiverName, SenderPhone, ReceiverPhone, SenderAddress, ReceiverAddress,  volume, branch, SenderMail) -> None:
         self.SenderName = SenderName
         self.ReceiverName = ReceiverName
         self.SenderPhone = SenderPhone
         self.ReceiverPhone = ReceiverPhone
         self.SenderAddress = SenderAddress
         self.ReceiverAddress = ReceiverAddress
+        self.SenderMail = SenderMail
         self.volume = volume
         self.dateOfArrival = utility.today()
         self.dateOfDispatch = 'NA'
@@ -30,6 +31,7 @@ class Consign:
             'Sender Name': self.SenderName, 
             'Sender Address': self.SenderAddress,
             'Sender Phone': self.SenderPhone, 
+            'Sender Mail' : self.SenderMail,
             'Receiver Name': self.ReceiverName, 
             'Receiver Address': self.ReceiverAddress, 
             'Receiver Phone': self.ReceiverPhone,
