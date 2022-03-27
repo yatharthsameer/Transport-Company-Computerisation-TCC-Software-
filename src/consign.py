@@ -2,6 +2,7 @@ from math import log
 import pymongo
 import utility
 from truck import dispatchTruck
+from bill import bill
 
 
 class Consign:
@@ -43,7 +44,10 @@ class Consign:
 def dispatchConsignment(consignID, truckID) -> None:
     # update dispatch date, delivered by truck, status, At Branch
     # BILL HERE
+    # update statistics here
     utility.consignDB.update_one({'_id': consignID}, {'$set': {'Date Of Dispatch': utility.today(), 'Delivered By Truck': truckID, 'At Branch': 'NA', 'Status': 'Dispatched'}})
+    consign = utility.consignDB.find_one({'_id': consignID})
+    bill(consign)
 
 def loadConsignment(consignID, truckID) -> None:
     # update truck volume, next destination if NA, calculate cost, update branch revenue, consign status, delivered by 

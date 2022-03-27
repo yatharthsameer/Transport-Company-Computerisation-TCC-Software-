@@ -1,6 +1,6 @@
 import pymongo
 
-cluster = pymongo.MongoClient("mongodb+srv://selabproject:selabproject@se.hl6lf.mongodb.net/TCC?retryWrites=true&w=majority")
+cluster = pymongo.MongoClient("mongodb://selabproject:selabproject@se-shard-00-00.hl6lf.mongodb.net:27017,se-shard-00-01.hl6lf.mongodb.net:27017,se-shard-00-02.hl6lf.mongodb.net:27017/TCC?ssl=true&replicaSet=atlas-ee0z3v-shard-0&authSource=admin&retryWrites=true&w=majority")
 
 db = cluster['TCC']
 #col = db["Branch"]
