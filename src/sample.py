@@ -11,6 +11,7 @@ consignSample = {
     'Receiver Phone': 'reciever phone',
     'Date Of Arrival': '20-03-12',
     'Date Of Dispatch': '23-03-12',
-    'Cost': 10000}
+    'Cost': 10000
+    }
 
 bill.bill(consignSample)
