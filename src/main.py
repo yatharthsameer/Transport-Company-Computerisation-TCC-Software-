@@ -49,13 +49,17 @@ class loginScreen(QDialog):
 
 class employeeScreen(QDialog):
     def __init__(self):
+        global widget
         super(employeeScreen, self).__init__()
         self.setObjectName("Employee")
-        loadUi('ui/employeescr.ui', self)
+        widget.setWindowTitle("TCC Employee")
+        loadUi('ui/employeescr1.ui', self)
         self.logoutButton.clicked.connect(self.goBack)
         self.show()
 
     def goBack(self):
+        global widget
+        widget.setWindowTitle("TCC Log In")
         currentWindow = loginScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() - 1)
@@ -63,13 +67,17 @@ class employeeScreen(QDialog):
 
 class managerScreen(QDialog):
     def __init__(self):
+        global widget
         super(managerScreen, self).__init__()
         self.setObjectName("Manager")
         loadUi('ui/managerscr.ui', self)
+        widget.setWindowTitle("TCC Manager")
         self.logoutButton.clicked.connect(self.goBack)
         self.show()
 
     def goBack(self):
+        global widget
+        widget.setWindowTitle("TCC Log In")
         currentWindow = loginScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() - 1)
@@ -79,6 +87,7 @@ utility.setupDB()
 app = QApplication([])
 currentWindow = loginScreen()
 widget = QStackedWidget()
+widget.setWindowTitle("TCC Log In")
 widget.addWidget(currentWindow)
 widget.setFixedHeight(840)
 widget.setFixedWidth(1351)
