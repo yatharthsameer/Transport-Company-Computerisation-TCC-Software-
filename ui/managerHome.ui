@@ -356,7 +356,7 @@ text-decoration: underline;</string>
      <string notr="true">background-color: white;
 border-radius: 10px</string>
     </property>
-    <widget class="QPushButton" name="addBranchButton">
+    <widget class="QPushButton" name="addBrancButton">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -410,26 +410,6 @@ text-decoration: underline;</string>
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="backButton">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>130</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-font: 75 20pt &quot;Calibri&quot;;
-color: rgb(222, 24, 24);
-background-color: white;
-border-radius: 25px</string>
-    </property>
-    <property name="text">
-     <string>&lt;-</string>
-    </property>
-   </widget>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
@@ -438,7 +418,6 @@ border-radius: 25px</string>
    <zorder>addTruckWidget</zorder>
    <zorder>resetPasswordWidget</zorder>
    <zorder>addBranchWidget</zorder>
-   <zorder>backButton</zorder>
   </widget>
  </widget>
  <resources/>
