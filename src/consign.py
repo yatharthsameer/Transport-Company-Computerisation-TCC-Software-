@@ -15,7 +15,7 @@ class Consign:
         self.ReceiverAddress = ReceiverAddress
         self.SenderMail = SenderMail
         self.volume = int(volume)
-        self.dateOfArrival = utility.today()
+        self.dateOfArrival = utility.now()
         self.dateOfDispatch = 'NA'
         self.deliveredByTruck = 'NA'
         self.cost = 0
@@ -40,6 +40,7 @@ class Consign:
             'Delivered By Truck': self.deliveredByTruck,
             'Cost': self.cost,
             'At Branch': self.branch,
+            'Destination': utility.closestBranch(self.ReceiverAddress),
             'Status': self.status})
 
 
@@ -47,8 +48,13 @@ def dispatchConsignment(consignID, truckID) -> None:
     # update dispatch date, delivered by truck, status, At Branch
     # BILL HERE
     # update statistics here
-    utility.consignDB.update_one({'_id': consignID}, {'$set': {'Date Of Dispatch': utility.today(), 'Delivered By Truck': truckID, 'At Branch': 'NA', 'Status': 'Dispatched'}})
+    utility.consignDB.update_one({'_id': consignID}, {'$set': {'Date Of Dispatch': utility.now(), 'Delivered By Truck': truckID, 'At Branch': 'NA', 'Status': 'Dispatched'}})
     consign = utility.consignDB.find_one({'_id': consignID})
+    branch = utility.branchDB.find_one({'Location': consign['At Branch']})
+    oldAvg = branch['Avg. Waiting Time for Consignments']
+    oldNo = branch['No. of Consignments Delivered']
+    newAvg = (oldAvg * oldNo + utility.deltaTimeToHours(utility.now(), utility.stringToDateTime(consign['Date Of Arrival']))) / (oldNo + 1)
+    utility.branchDB.update_one({'Location': consign['At Branch']}, {'$set': {'Avg. Waiting Time for Consignments': newAvg, 'No. of Consignments Delivered': oldNo + 1}})
     bill(consign)
 
 def loadConsignment(consignID, truck) -> None:
@@ -58,7 +64,7 @@ def loadConsignment(consignID, truck) -> None:
     consign = utility.consignDB.find_one({'_id': consignID})
     newVol = consign['Volume']
     if truck['Next Destination'] == 'NA':
-        truck['Next Destination'] = utility.closestBranch(consign['Sender Address'])
+        truck['Next Destination'] = consign['Destination']
         utility.truckDB.update_one({'_id': truckID}, {'$set': {'Next Destination': truck['Next Destination']}})
     cost = int(newVol * log(utility.distance(consign['At Branch'], truck['Next Destination'])))
     curVol += newVol

@@ -16,7 +16,6 @@ class Truck:
         utility.settings.update_one({'_id': 0}, {'$set': {'TruckID': id + 1}})
         utility.truckDB.insert_one({
             '_id': id,
-            'Last Dispatch Date': 'NA',
             'Total Consignments Delivered': 0,
             'Current Driver': self.Driver, 
             'Location': self.CurrentLocation,
@@ -25,7 +24,9 @@ class Truck:
             'Consignments Loaded': [],
             'Status': 'Available',
             'Next Destination': 'NA',
-            'Volume Loaded': 0})
+            'Volume Loaded': 0,
+            'Delivery History': [],
+            'Dispatched At': 'NA'})
 
 
 def changeDriver(newDriverName, newDriverPhone, truckPlateNumber) -> None:
@@ -34,9 +35,22 @@ def changeDriver(newDriverName, newDriverPhone, truckPlateNumber) -> None:
 def dispatchTruck(truckID) -> None:
     for consignID in utility.truckDB.find_one({'_id': truckID})['Consignments Loaded']:
         consign.dispatchConsignment(consignID, truckID)
-    utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Enroute', 'Last Dispatch Date': utility.today()}})
+    utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Enroute', 'Dispatched At': utility.now()}})
 
 def unloadTruck(truckID) -> None:
     truck = utility.truckDB.find_one({'_id': truckID})
     loc = truck['Next Destination']
-    utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Available', 'Consignments Loaded': [], 'Volume Loaded': 0, 'Next Destination': 'NA', 'Location': loc, 'Total Consignments Delivered': truck['Total Consignments Delivered'] + 1}})
+    prevLoc = truck['Location']
+    History = truck['Delivery History']
+    History.append({'From': prevLoc, 'To': loc, 'Dispatched At': truck['Dispatched At'], 'Delivered At': utility.now()})
+    for consign in truck['Consignments Loaded']:
+        utility.consignDB.update_one({'_id': consign}, {'$set': {'Status': 'Delivered'}})
+    utility.truckDB.update_one({'_id': truckID}, {'$set': {
+        'Status': 'Available', 
+        'Consignments Loaded': [], 
+        'Volume Loaded': 0, 
+        'Next Destination': 'NA', 
+        'Location': loc, 
+        'Total Consignments Delivered': truck['Total Consignments Delivered'] + 1, 
+        'Delivery History': History, 
+        'Dispatched At': 'NA'}})

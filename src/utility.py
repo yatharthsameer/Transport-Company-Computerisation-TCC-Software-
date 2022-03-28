@@ -3,7 +3,7 @@ import random
 from employee import changePassword
 import consign
 import string
-from datetime import date
+from datetime import date, datetime
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 from mail import sendMail
@@ -44,7 +44,9 @@ class Branch:
             'Address':self.address, 
             'Number Of Employees': self.numOfEmployees, 
             'Employees': self.employees, 
-            'Revenue': self.revenue})
+            'Revenue': self.revenue,
+            'Avg. Waiting Time for Consignments': 0,
+            'No. of Consignments Delivered': 0})
 
     def convertFromDict(dict):
         return Branch(dict['Location'], dict['Address'], dict['Employees'], dict['Number Of Employees'], dict['Revenue'])
@@ -63,11 +65,21 @@ def checkLogin(username, password):
     except:
         return False
 
+def stringToDateTime(string):
+    return datetime.strptime(string, '%Y-%m-%d %H:%M:%S.%f')
+
 def generateRandomString():
     return ''.join(random.choice(string.digits + string.ascii_letters) for _ in range(random.randint(8, 12)))
 
+def deltaTimeToHours(s1, s2):
+    d = s2 - s1
+    return (d.days * 24 + d.seconds / 3600)
+
 def today():
     return str(date.today())
+
+def now():
+    return str(datetime.now())
 
 def setupDB():
     global database, employeeDB, settings, branchDB, truckDB, consignDB
@@ -90,7 +102,7 @@ def mailPassword(email):
         return False
 
 def nextAvailableTruck(branch, consign):
-    nearestBranch = closestBranch(consign['Reciever Address'])
+    nearestBranch = consign['Destination']
     truck = truckDB.find_one({'Location': branch, 'Next Destination': nearestBranch, 'Status': 'Available'}) 
     if truck is not None:
         return truck

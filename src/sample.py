@@ -18,3 +18,11 @@ consignSample = {
 
 bill.bill(consignSample)
 '''
+
+from datetime import datetime
+s1 = datetime.now()
+s2 = datetime.strptime('2022-05-01 00:00:00', '%Y-%m-%d %H:%M:%S')
+d = s2 - s1
+d2 = s2 - s1
+print(d + d2)
+print(d.days * 24 + d.seconds / 3600)

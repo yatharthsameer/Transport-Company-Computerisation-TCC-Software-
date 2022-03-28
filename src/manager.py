@@ -25,3 +25,10 @@ def consignmentQuery(id, sendername, receiverName):
         return utility.consignmentDB.find_one({'Sender Name': sendername, 'Receiver Name': sendername})
     else:
         return utility.consignmentDB.find_one({'Receiver Name': receiverName})
+
+def queryConsignmentsHeadedToSameBranch(branchName):
+    result = utility.consignmentDB.find({'Destination': branchName, 'Status': 'Dispatched'})
+    revenue = 0
+    for consign in result:
+        revenue += consign['Cost']
+    return revenue, result
