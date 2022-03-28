@@ -51,10 +51,10 @@ def dispatchConsignment(consignID, truckID) -> None:
     consign = utility.consignDB.find_one({'_id': consignID})
     bill(consign)
 
-def loadConsignment(consignID, truckID) -> None:
+def loadConsignment(consignID, truck) -> None:
     # update truck volume, next destination if NA, calculate cost, update branch revenue, consign status, delivered by 
-    truck = utility.truckDB.find_one({'_id': truckID})
     curVol = truck['Volume Loaded']
+    truckID = truck['_id']
     consign = utility.consignDB.find_one({'_id': consignID})
     newVol = consign['Volume']
     if truck['Next Destination'] == 'NA':
@@ -62,7 +62,7 @@ def loadConsignment(consignID, truckID) -> None:
         utility.truckDB.update_one({'_id': truckID}, {'$set': {'Next Destination': truck['Next Destination']}})
     cost = int(newVol * log(utility.distance(consign['At Branch'], truck['Next Destination'])))
     curVol += newVol
-    utility.consignDB.update_one({'_id': consignID}, {'$set': {'Status': 'Loaded', 'Delivered By Truck': truckID, 'Cost': cost}})
+    utility.consignDB.update_one({'_id': consignID}, {'$set': {'Status': 'Loaded on truck ' + truck['Number Plate'], 'Delivered By Truck': truckID, 'Cost': cost}})
     utility.branchDB.update_one({'Location': consign['At Branch']}, {'$set': {'Revenue': utility.branchDB.find_one({'Location': consign['At Branch']})['Revenue'] + cost}})
     utility.truckDB.update_one({'_id': truckID}, {'$set': {'Volume Loaded': curVol}})
     if curVol > 500:
