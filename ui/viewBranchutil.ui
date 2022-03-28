@@ -100,7 +100,7 @@ background-color: &quot;#222222&quot;
      <string>&lt;-</string>
     </property>
    </widget>
-   <widget class="QWidget" name="resetPasswordWidget_2" native="true">
+   <widget class="QWidget" name="viewEmployeeWidget" native="true">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -128,31 +128,31 @@ color: rgb(222,24,24);
 </string>
      </property>
      <property name="text">
-      <string>Add Branch Util</string>
+      <string>View Branch Util</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_17">
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>120</y>
+       <y>100</y>
        <width>421</width>
        <height>61</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 25 18pt &quot;Calibri&quot;;</string>
+      <string notr="true">font: 25 13pt &quot;Calibri&quot;;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the details of the Branch&lt;br/&gt;you wish to add&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the details of the branch you wish&lt;br/&gt;to view. Fill any field to search&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="CreateBranchButton">
+    <widget class="QPushButton" name="CreateEmployeeButton">
      <property name="geometry">
       <rect>
-       <x>490</x>
-       <y>640</y>
-       <width>301</width>
+       <x>540</x>
+       <y>210</y>
+       <width>191</width>
        <height>61</height>
       </rect>
      </property>
@@ -171,14 +171,14 @@ border-color: rgb(222,24,24)
 }</string>
      </property>
      <property name="text">
-      <string>Create Branch</string>
+      <string>Search</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="branchLocationLineEdit">
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>250</y>
+       <y>220</y>
        <width>381</width>
        <height>41</height>
       </rect>
@@ -203,11 +203,11 @@ font: 25 12pt &quot;Calibri&quot;;
 color: #808080</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_13">
+    <widget class="QLabel" name="label_12">
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>230</y>
+       <y>200</y>
        <width>121</width>
        <height>16</height>
       </rect>
@@ -220,52 +220,119 @@ font: 25 14pt &quot;Calibri&quot;;</string>
       <string>Branch Location</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="addressLineEdit">
+    <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>330</y>
-       <width>381</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Calibri</family>
-       <pointsize>12</pointsize>
-       <weight>3</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: #fff3f3;
-border-style: outset;
-border-width: 2px;
-border-radius: 15px;
-border-color: #fff3f3;
-padding-left: 10px;
-font: 25 12pt &quot;Calibri&quot;;
-color: #808080</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_14">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>310</y>
-       <width>121</width>
-       <height>16</height>
+       <y>350</y>
+       <width>301</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(222,24,24);
-font: 25 14pt &quot;Calibri&quot;;</string>
+      <string notr="true">font: 75 24pt &quot;League Spartan&quot;;
+color: rgb(222,24,24);
+</string>
      </property>
      <property name="text">
-      <string>Address</string>
+      <string>Branch details:</string>
      </property>
     </widget>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>410</y>
+       <width>721</width>
+       <height>251</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QWidget#widget_2{
+background-color: '#eeeeee'
+}</string>
+     </property>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>20</y>
+        <width>211</width>
+        <height>211</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <row>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>6</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Property</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Details</string>
+       </property>
+      </column>
+      <item row="0" column="0">
+       <property name="text">
+        <string>PlateNo</string>
+       </property>
+      </item>
+      <item row="1" column="0">
+       <property name="text">
+        <string>DriverNo</string>
+       </property>
+      </item>
+      <item row="2" column="0">
+       <property name="text">
+        <string>DriverName</string>
+       </property>
+      </item>
+      <item row="3" column="0">
+       <property name="text">
+        <string>Location</string>
+       </property>
+      </item>
+      <item row="4" column="0">
+       <property name="text">
+        <string>idLoaded</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <zorder>widget_2</zorder>
+    <zorder>label_16</zorder>
+    <zorder>label_17</zorder>
+    <zorder>CreateEmployeeButton</zorder>
+    <zorder>branchLocationLineEdit</zorder>
+    <zorder>label_12</zorder>
+    <zorder>label_4</zorder>
    </widget>
   </widget>
  </widget>
