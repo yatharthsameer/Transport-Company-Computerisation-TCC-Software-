@@ -1,9 +1,9 @@
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog, QStackedWidget
 from PyQt5 import QtCore, QtGui, QtWidgets
+from consign import Consign
 from utility import checkLogin
 import utility
-#test
 
 
 class loginScreen(QDialog):
@@ -18,9 +18,11 @@ class loginScreen(QDialog):
         self.show()
 
     def login(self):
-        access = checkLogin(self.usernameLineEdit.text(), self.passwordLineEdit.text())
+        user = self.usernameLineEdit.text()
+        password = self.passwordLineEdit.text()
         self.usernameLineEdit.setText("")
         self.passwordLineEdit.setText("")
+        access = checkLogin(user, password)
         self.usernameLineEdit.setFocus()
         if access == True:
             self.accept()
@@ -53,14 +55,104 @@ class employeeScreen(QDialog):
         super(employeeScreen, self).__init__()
         self.setObjectName("Employee")
         widget.setWindowTitle("TCC Employee")
-        loadUi('ui/employeescr1.ui', self)
-        self.logoutButton.clicked.connect(self.goBack)
+        loadUi('ui/employeeHome.ui', self)
+        self.employee_name.setText(utility.employeeUser['Name'])
+        self.employeeIDLabel.setText(str(utility.employeeUser['_id']))
+        self.emailIDLabel.setText(utility.employeeUser['Email'])
+        self.branchLabel.setText(utility.employeeUser['Branch'])
+        self.logoutButton.clicked.connect(self.logout)
+        self.enterDetailsButton.connect(self.enterDetails)
+        self.truckUtilButton.clicked.connect(self.truckPage)
         self.show()
 
-    def goBack(self):
+    def logout(self):
         global widget
         widget.setWindowTitle("TCC Log In")
         currentWindow = loginScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() - 1)
+
+    def enterDetails(self):
+        currentWindow = enterConsignDetailsScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    def truckPage(self):
+        currentWindow = truckScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class enterConsignDetailsScreen(QDialog):
+    def __init__(self):
+        global widget
+        widget.setWindowTitle('Register Consignment')
+        super(enterConsignDetailsScreen, self).__init__()
+        self.setObjectName("Enter Consign Details")
+        loadUi('ui/employeeAddConsignment.ui', self)
+        self.employee_name.setText(utility.employeeUser['Name'])
+        self.employeeIDLabel.setText(str(utility.employeeUser['_id']))
+        self.emailIDLabel.setText(utility.employeeUser['Email'])
+        self.branchLabel.setText(utility.employeeUser['Branch'])
+        self.logoutButton.clicked.connect(self.logout)
+        self.enterDetailsButton.clicked.connect(self.createConsignment)
+        self.backButton.clicked.connect(self.back)
+        self.show()
+
+    def logout(self):
+        global widget
+        widget.setWindowTitle("TCC Log In")
+        currentWindow = loginScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() - 1)
+
+    def back(self):
+        currentWindow = employeeScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() - 1)
+
+    def createConsignment(self):
+        createdConsign = Consign(
+            self.senderMailLineEdit.text(), 
+            self.receiverNameLineEdit.text(), 
+            self.senderMobileNoLineEdit.text(), 
+            self.receiverMobileNoLineEdit.text(),
+            self.senderAddressLineEdit.text(),
+            self.receiverAddressLineEdit.text(),
+            self.volumeLineEdit.text(),
+            utility.employeeUser['Branch'],
+            self.senderMailLineEdit.text())
+        self.senderMailLineEdit.setText("") 
+        self.receiverNameLineEdit.setText("")
+        self.senderMobileNoLineEdit.setText("") 
+        self.receiverMobileNoLineEdit.setText("")
+        self.senderAddressLineEdit.setText("")
+        self.receiverAddressLineEdit.setText("")
+        self.volumeLineEdit.setText("")
+        self.senderMailLineEdit.setText("")
+        createdConsign.convertToDictAndUpload()
+
+
+class truckScreen(QDialog):
+    def __init__(self):
+        global widget
+        widget.setWindowTitle('Truck Management')
+        super(truckScreen, self).__init__()
+        self.setObjectName("Truck")
+        loadUi('ui/truck.ui', self)
+        self.logoutButton.clicked.connect(self.logout)
+        self.backButton.clicked.connect(self.back)
+        self.show()
+
+    def logout(self):
+        global widget
+        widget.setWindowTitle("TCC Log In")
+        currentWindow = loginScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() - 1)
+
+    def back(self):
+        currentWindow = employeeScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() - 1)
 

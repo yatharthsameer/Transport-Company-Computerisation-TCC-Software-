@@ -42,7 +42,7 @@ background-color:white;
     <rect>
      <x>150</x>
      <y>350</y>
-     <width>211</width>
+     <width>301</width>
      <height>61</height>
     </rect>
    </property>
@@ -59,8 +59,8 @@ font: 75 24pt &quot;League Spartan&quot;;</string>
     <rect>
      <x>190</x>
      <y>460</y>
-     <width>141</width>
-     <height>31</height>
+     <width>171</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -74,10 +74,10 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="Emailaddress_heading">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>560</y>
-     <width>161</width>
-     <height>21</height>
+     <x>190</x>
+     <y>550</y>
+     <width>191</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -93,7 +93,7 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
     <rect>
      <x>220</x>
      <y>650</y>
-     <width>91</width>
+     <width>101</width>
      <height>31</height>
     </rect>
    </property>
@@ -110,8 +110,8 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
     <rect>
      <x>210</x>
      <y>500</y>
-     <width>101</width>
-     <height>16</height>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -125,9 +125,9 @@ font: 25 16pt &quot;Calibri&quot;;</string>
   <widget class="QLabel" name="emailIDLabel">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>110</x>
      <y>590</y>
-     <width>251</width>
+     <width>331</width>
      <height>31</height>
     </rect>
    </property>
@@ -160,9 +160,9 @@ font: 25 16pt &quot;Calibri&quot;;</string>
    <property name="geometry">
     <rect>
      <x>650</x>
-     <y>190</y>
-     <width>221</width>
-     <height>91</height>
+     <y>180</y>
+     <width>261</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -178,9 +178,9 @@ font: 75 60pt &quot;League Spartan&quot;;
    <property name="geometry">
     <rect>
      <x>650</x>
-     <y>320</y>
-     <width>501</width>
-     <height>51</height>
+     <y>310</y>
+     <width>581</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -210,7 +210,7 @@ border-radius: 15px</string>
     <string>Enter Consigment</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="forgotpasswordButton">
+  <widget class="QPushButton" name="logoutButton">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -255,7 +255,7 @@ background-color: transparent</string>
     <rect>
      <x>650</x>
      <y>370</y>
-     <width>631</width>
+     <width>681</width>
      <height>91</height>
     </rect>
    </property>
@@ -266,7 +266,7 @@ background-color: transparent</string>
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose Enter consigment to report a consigment order.&lt;br&gt; Choose the truck util to report consigment arrivals or manage truck data&lt;br&gt; in the branch&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="enterDetailsButton_2">
+  <widget class="QPushButton" name="truckUtilButton">
    <property name="geometry">
     <rect>
      <x>980</x>
@@ -297,9 +297,9 @@ border-radius: 15px</string>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
   <zorder>enterDetailsButton</zorder>
-  <zorder>forgotpasswordButton</zorder>
+  <zorder>logoutButton</zorder>
   <zorder>label_3</zorder>
-  <zorder>enterDetailsButton_2</zorder>
+  <zorder>truckUtilButton</zorder>
  </widget>
  <resources/>
  <connections/>

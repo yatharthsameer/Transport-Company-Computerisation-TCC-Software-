@@ -14,7 +14,7 @@ class Consign:
         self.SenderAddress = SenderAddress
         self.ReceiverAddress = ReceiverAddress
         self.SenderMail = SenderMail
-        self.volume = volume
+        self.volume = int(volume)
         self.dateOfArrival = utility.today()
         self.dateOfDispatch = 'NA'
         self.deliveredByTruck = 'NA'

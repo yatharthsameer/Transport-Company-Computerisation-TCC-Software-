@@ -54,8 +54,12 @@ def checkLogin(username, password):
     try:
         if username == "admin" and password == settings.find_one({'_id': 0})['managerPassword']:
             return 'SU'
-        elif username == employeeDB.find_one({'email': username})['email'] and password == employeeDB.find_one({'email': username})['password']:
-            return True
+        else:
+            employee = employeeDB.find_one({'email': username})
+            if employee is not None and employee['Password'] == password:
+                global employeeUser
+                employeeUser = employee
+                return True
     except:
         return False
 
@@ -108,3 +112,4 @@ employeeDB = None
 branchDB = None
 consignDB = None
 truckDB = None
+employeeUser = None
