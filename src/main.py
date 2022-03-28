@@ -172,6 +172,7 @@ class managerScreen(QDialog):
         self.backButton.clicked.connect(self.goBack)
         self.viewTrucksButton.clicked.connect(self.goToViewTrucks)
         self.addTruckButton.clicked.connect(self.goToAddTruck)
+        self.addBranchButton.clicked.connect(self.goToAddBranch)
         self.show()
 
     def goBack(self):
@@ -198,6 +199,11 @@ class managerScreen(QDialog):
 
     def goToAddTruck(self):
         currentWindow = AddTruckScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    def goToAddBranch(self):
+        currentWindow = AddBranchScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -299,6 +305,32 @@ class AddTruckScreen(QDialog):
         self.driverNameLineEdit.setText('')
         self.driverNumberLineEdit.setText('')
         createdTruck.convertToDictAndUpload()
+
+
+class AddBranchScreen(QDialog):
+    def __init__(self):
+        global widget
+        widget.setWindowTitle('Add Branch')
+        super(AddBranchScreen, self).__init__()
+        self.setObjectName("AddBranch")
+        loadUi('ui/addBranchUtil.ui', self)
+        self.backButton.clicked.connect(self.goBack)
+        self.CreateBranchButton.clicked.connect(self.createBranch)
+        self.show()
+
+    def goBack(self):
+        currentWindow = managerScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() - 1)
+
+    def createBranch(self):
+        createdBranch = utility.Branch(
+            self.branchLocationLineEdit.text(),
+            self.addressLineEdit.text()
+        )
+        self.branchLocationLineEdit.setText('')
+        self.addressLineEdit.setText('')
+        createdBranch.convertToDictAndUpload()
 
 
 utility.setupDB()

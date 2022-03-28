@@ -19,10 +19,7 @@ consignSample = {
 bill.bill(consignSample)
 '''
 
-from datetime import datetime
-s1 = datetime.now()
-s2 = datetime.strptime('2022-05-01 00:00:00', '%Y-%m-%d %H:%M:%S')
-d = s2 - s1
-d2 = s2 - s1
-print(d + d2)
-print(d.days * 24 + d.seconds / 3600)
+from datetime import datetime, date
+s1 = datetime.strptime('2022-05-01', '%Y-%m-%d')
+s2 = datetime.strptime('2022-05-01 05:00:00', '%Y-%m-%d %H:%M:%S')
+print(s1 < s2)

@@ -16,6 +16,7 @@ class Truck:
         utility.settings.update_one({'_id': 0}, {'$set': {'TruckID': id + 1}})
         utility.truckDB.insert_one({
             '_id': id,
+            'Time Of Purchase' : utility.now(),
             'Total Consignments Delivered': 0,
             'Current Driver': self.Driver, 
             'Location': self.CurrentLocation,

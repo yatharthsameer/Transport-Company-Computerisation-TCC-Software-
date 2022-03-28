@@ -27,12 +27,9 @@ def closestBranch(address):
 
 
 class Branch:
-    def __init__(self, location, address, employees = [], numOfEmployees = 0, revenue = 0) -> None:
+    def __init__(self, location, address) -> None:
         self.location = location
         self.address = address
-        self.employees = employees
-        self.numOfEmployees = numOfEmployees
-        self.revenue = revenue
         
     def convertToDictAndUpload(self) -> None:
         global settings
@@ -42,9 +39,9 @@ class Branch:
             '_id': id, 
             'Location':self.location, 
             'Address':self.address, 
-            'Number Of Employees': self.numOfEmployees, 
-            'Employees': self.employees, 
-            'Revenue': self.revenue,
+            'Number Of Employees': 0, 
+            'Employees': [], 
+            'Revenue': 0,
             'Avg. Waiting Time for Consignments': 0,
             'No. of Consignments Delivered': 0})
 
