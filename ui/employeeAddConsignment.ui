@@ -57,9 +57,9 @@ font: 75 24pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="employeeIDHeading">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>190</x>
      <y>460</y>
-     <width>171</width>
+     <width>161</width>
      <height>31</height>
     </rect>
    </property>
@@ -523,10 +523,18 @@ color: #808080</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 20pt &quot;League Spartan&quot;;
+    <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 15px</string>
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
    </property>
    <property name="text">
     <string>Enter Details</string>
@@ -579,11 +587,16 @@ background-color: transparent</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">
+    <string notr="true">QPushButton{
 font: 75 20pt &quot;Calibri&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 25px</string>
+border-radius: 25px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222,24,24);
+}</string>
    </property>
    <property name="text">
     <string>&lt;-</string>

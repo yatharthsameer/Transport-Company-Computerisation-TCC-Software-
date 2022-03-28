@@ -2,6 +2,8 @@ from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog, QStackedWidget
 from PyQt5 import QtCore, QtGui, QtWidgets
 from consign import Consign
+from truck import Truck
+from employee import Employee
 from utility import checkLogin
 import utility
 
@@ -61,7 +63,7 @@ class employeeScreen(QDialog):
         self.emailIDLabel.setText(utility.employeeUser['Email'])
         self.branchLabel.setText(utility.employeeUser['Branch'])
         self.logoutButton.clicked.connect(self.logout)
-        self.enterDetailsButton.connect(self.enterDetails)
+        self.enterConsignmentButton.connect(self.enterDetailsPage)
         self.truckUtilButton.clicked.connect(self.truckPage)
         self.show()
 
@@ -72,7 +74,7 @@ class employeeScreen(QDialog):
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() - 1)
 
-    def enterDetails(self):
+    def enterDetailsPage(self):
         currentWindow = enterConsignDetailsScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
@@ -164,7 +166,9 @@ class managerScreen(QDialog):
         self.setObjectName("Manager")
         loadUi('ui/managerscr.ui', self)
         widget.setWindowTitle("TCC Manager")
-        self.logoutButton.clicked.connect(self.goBack)
+        self.viewEmployeeButton.clicked.connect(self.goToViewEmployee)
+        self.addEmployeeButton.clicked.connect(self.goToAddEmployee)
+        self.backButton.clicked.connect(self.goBack)
         self.show()
 
     def goBack(self):
@@ -173,6 +177,58 @@ class managerScreen(QDialog):
         currentWindow = loginScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() - 1)
+
+    def goToViewEmployee(self):
+        currentWindow = ViewEmployeeScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    def goToAddEmployee(self):
+        currentWindow = AddEmployeeScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class ViewEmployeeScreen(QDialog):
+    def __init__(self):
+        global widget
+        widget.setWindowTitle('Employee Query')
+        super(ViewEmployeeScreen, self).__init__()
+        self.setObjectName("ViewEmployee")
+        loadUi('ui/viewEmployeeUtil.ui', self)
+        self.show()
+
+
+class AddEmployeeScreen(QDialog):
+    def __init__(self):
+        global widget
+        widget.setWindowTitle('Add Employee')
+        super(AddEmployeeScreen, self).__init__()
+        self.setObjectName("AddEmployee")
+        loadUi('ui/addEmployee.ui', self)
+        self.backButton.clicked.connect(self.goBack)
+        self.CreateEmployeeButton.clicked.connect(self.createEmployee)
+        self.show()
+
+    def goBack(self):
+        currentWindow = managerScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() - 1)
+
+    def createEmployee(self):
+        createdEmployee = Employee(
+            self.nameLineEdit.text(),
+            self.phoneNumberLineEdit.text(),
+            self.emailLineEdit.text(),
+            self.addressLineEdit.text(),
+            self.branchLocationLineEdit.text(),
+        )
+        createdEmployee.convertToDictAndUpload()
+        self.nameLineEdit.setText('')
+        self.phoneNumberLineEdit.setText('')
+        self.emailLineEdit.setText('')
+        self.addressLineEdit.setText('')
+        self.branchLocationLineEdit.setText('')
 
 
 utility.setupDB()

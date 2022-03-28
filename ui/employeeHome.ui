@@ -40,9 +40,9 @@ background-color:white;
   <widget class="QLabel" name="employee_name">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>140</x>
      <y>350</y>
-     <width>301</width>
+     <width>261</width>
      <height>61</height>
     </rect>
    </property>
@@ -60,7 +60,7 @@ font: 75 24pt &quot;League Spartan&quot;;</string>
      <x>190</x>
      <y>460</y>
      <width>171</width>
-     <height>51</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -74,9 +74,9 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="Emailaddress_heading">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>180</x>
      <y>550</y>
-     <width>191</width>
+     <width>181</width>
      <height>31</height>
     </rect>
    </property>
@@ -92,9 +92,9 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>650</y>
-     <width>101</width>
-     <height>31</height>
+     <y>640</y>
+     <width>111</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -111,7 +111,7 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
      <x>210</x>
      <y>500</y>
      <width>121</width>
-     <height>31</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -125,10 +125,10 @@ font: 25 16pt &quot;Calibri&quot;;</string>
   <widget class="QLabel" name="emailIDLabel">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>590</y>
-     <width>331</width>
-     <height>31</height>
+     <x>140</x>
+     <y>580</y>
+     <width>281</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -160,9 +160,9 @@ font: 25 16pt &quot;Calibri&quot;;</string>
    <property name="geometry">
     <rect>
      <x>650</x>
-     <y>180</y>
+     <y>160</y>
      <width>261</width>
-     <height>101</height>
+     <height>121</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -178,9 +178,9 @@ font: 75 60pt &quot;League Spartan&quot;;
    <property name="geometry">
     <rect>
      <x>650</x>
-     <y>310</y>
+     <y>290</y>
      <width>581</width>
-     <height>61</height>
+     <height>81</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -191,7 +191,7 @@ font: 75 28pt &quot;League Spartan&quot;;</string>
     <string>Choose utility as required</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="enterDetailsButton">
+  <widget class="QPushButton" name="enterConsignmentButton">
    <property name="geometry">
     <rect>
      <x>640</x>
@@ -201,31 +201,21 @@ font: 75 28pt &quot;League Spartan&quot;;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 20pt &quot;League Spartan&quot;;
+    <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 15px</string>
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
    </property>
    <property name="text">
     <string>Enter Consigment</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="logoutButton">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>81</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 25 15pt &quot;Calibri&quot;;
-color: white;
-background-color: transparent</string>
-   </property>
-   <property name="text">
-    <string>&lt;-logout</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_10">
@@ -255,7 +245,7 @@ background-color: transparent</string>
     <rect>
      <x>650</x>
      <y>370</y>
-     <width>681</width>
+     <width>671</width>
      <height>91</height>
     </rect>
    </property>
@@ -276,13 +266,46 @@ background-color: transparent</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 20pt &quot;League Spartan&quot;;
+    <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 15px</string>
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
    </property>
    <property name="text">
     <string>Truck Util</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="backButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>51</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+font: 75 20pt &quot;Calibri&quot;;
+color: rgb(222, 24, 24);
+background-color: white;
+border-radius: 25px
+}
+QPushButton:hover{
+background-color: &quot;#222222&quot;
+
+}</string>
+   </property>
+   <property name="text">
+    <string>&lt;-</string>
    </property>
   </widget>
   <zorder>label_10</zorder>
@@ -296,10 +319,10 @@ border-radius: 15px</string>
   <zorder>branchLabel</zorder>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
-  <zorder>enterDetailsButton</zorder>
-  <zorder>logoutButton</zorder>
+  <zorder>enterConsignmentButton</zorder>
   <zorder>label_3</zorder>
   <zorder>truckUtilButton</zorder>
+  <zorder>backButton</zorder>
  </widget>
  <resources/>
  <connections/>

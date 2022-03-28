@@ -225,10 +225,18 @@ color: #808080</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 24pt &quot;League Spartan&quot;;
+     <string notr="true">QPushButton{
+font: 75 24pt &quot;League Spartan&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 15px</string>
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
     </property>
     <property name="text">
      <string>Login</string>
@@ -271,16 +279,22 @@ font: 75 15pt &quot;Calibri&quot;;</string>
    <widget class="QPushButton" name="forgotpasswordButton">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>910</x>
       <y>620</y>
       <width>171</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 25 15pt &quot;Calibri&quot;;
+     <string notr="true">QPushButton{
+font: 25 15pt &quot;Calibri&quot;;
 color: rgb(222,24,24);
-background-color: transparent</string>
+background-color: transparent
+}
+QPushButton:hover{
+
+	text-decoration: underline;
+}</string>
     </property>
     <property name="text">
      <string>forgot password?</string>

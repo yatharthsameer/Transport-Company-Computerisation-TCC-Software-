@@ -22,6 +22,9 @@
      <height>841</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -41,7 +44,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QWidget" name="resetPasswordWidget" native="true">
+   <widget class="QWidget" name="employeeWidget" native="true">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -54,7 +57,7 @@
      <string notr="true">background-color: white;
 border-radius: 10px</string>
     </property>
-    <widget class="QPushButton" name="resetPasswordButton">
+    <widget class="QPushButton" name="addEmployeeButton">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -64,13 +67,21 @@ border-radius: 10px</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;League Spartan&quot;;
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 15px</string>
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
      </property>
      <property name="text">
-      <string>Reset Password</string>
+      <string>Add Employee</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_12">
@@ -88,15 +99,15 @@ color: rgb(222,24,24);
 text-decoration: underline;</string>
      </property>
      <property name="text">
-      <string>Reset PasswordUtil</string>
+      <string>Employee Util</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_13">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>140</y>
-       <width>421</width>
+       <y>100</y>
+       <width>231</width>
        <height>171</height>
       </rect>
      </property>
@@ -104,7 +115,34 @@ text-decoration: underline;</string>
       <string notr="true">font: 25 12pt &quot;Calibri&quot;;</string>
      </property>
      <property name="text">
-      <string>This Util allows you to view the employees that &lt;br&gt;have requested a password reset&lt;br&gt;&lt;br&gt;You may reset the password to a &lt;br&gt;suitable value&lt;br&gt;&lt;br&gt;Or you can fire them:)&lt;br&gt;&lt;br&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to register or &lt;br/&gt;deregister employees to the &lt;br/&gt;company. &lt;br/&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="viewEmployeeButton">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>410</y>
+       <width>301</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
+color: white;
+background-color: rgb(222, 24, 24);
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
+     </property>
+     <property name="text">
+      <string>View Employee</string>
      </property>
     </widget>
    </widget>
@@ -142,7 +180,7 @@ color: white</string>
      <string>Manager Portal</string>
     </property>
    </widget>
-   <widget class="QWidget" name="addEmployeeWidget" native="true">
+   <widget class="QWidget" name="consignmentsWidget" native="true">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -155,7 +193,7 @@ color: white</string>
      <string notr="true">background-color: white;
 border-radius: 10px</string>
     </property>
-    <widget class="QPushButton" name="addEmployeeButton">
+    <widget class="QPushButton" name="consignmentsButton">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -165,20 +203,28 @@ border-radius: 10px</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;League Spartan&quot;;
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 15px</string>
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
      </property>
      <property name="text">
-      <string>Add employee</string>
+      <string>Consignments</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>70</y>
+       <y>60</y>
        <width>291</width>
        <height>101</height>
       </rect>
@@ -187,7 +233,7 @@ border-radius: 15px</string>
       <string notr="true">font: 25 12pt &quot;Calibri&quot;;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to register or &lt;br&gt;deregister employees to the &lt;br&gt;company. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to query &lt;br/&gt;statistics on consignments&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_11">
@@ -205,7 +251,7 @@ color: rgb(222,24,24);
 text-decoration: underline;</string>
      </property>
      <property name="text">
-      <string>Add Employee</string>
+      <string>Consignments</string>
      </property>
     </widget>
    </widget>
@@ -232,10 +278,18 @@ border-radius: 10px</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;League Spartan&quot;;
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 15px</string>
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
      </property>
      <property name="text">
       <string>View Statistics</string>
@@ -292,17 +346,25 @@ border-radius: 10px</string>
     <widget class="QPushButton" name="addTruckButton">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>270</x>
        <y>200</y>
-       <width>231</width>
+       <width>181</width>
        <height>61</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;League Spartan&quot;;
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 15px</string>
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
      </property>
      <property name="text">
       <string>Add truck</string>
@@ -323,7 +385,7 @@ color: rgb(222,24,24);
 text-decoration: underline;</string>
      </property>
      <property name="text">
-      <string>Add Truck Util</string>
+      <string>Truck Util</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">
@@ -342,6 +404,33 @@ text-decoration: underline;</string>
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to register or deregister trucks to the &lt;br&gt;company. It also shows the list of trucks&lt;br&gt;currently registered with options to manage them&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="viewTrucksButton">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>200</y>
+       <width>181</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
+color: white;
+background-color: rgb(222, 24, 24);
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
+     </property>
+     <property name="text">
+      <string>View Trucks</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="addBranchWidget" native="true">
     <property name="geometry">
@@ -356,7 +445,7 @@ text-decoration: underline;</string>
      <string notr="true">background-color: white;
 border-radius: 10px</string>
     </property>
-    <widget class="QPushButton" name="addBrancButton">
+    <widget class="QPushButton" name="addBranchButton">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -366,10 +455,18 @@ border-radius: 10px</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;League Spartan&quot;;
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 15px</string>
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
      </property>
      <property name="text">
       <string>Add Branch</string>
@@ -390,7 +487,7 @@ color: rgb(222,24,24);
 text-decoration: underline;</string>
      </property>
      <property name="text">
-      <string>Add Branch Util</string>
+      <string>Branch Util</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -409,15 +506,68 @@ text-decoration: underline;</string>
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to register or&lt;br/&gt;deregister branches to the company. &lt;br/&gt;It will also show the list of branches&lt;br/&gt;currently registered&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="viewBranchesButton">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>290</y>
+       <width>231</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
+color: white;
+background-color: rgb(222, 24, 24);
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
+     </property>
+     <property name="text">
+      <string>View Branches</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="backButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>130</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+font: 75 20pt &quot;Calibri&quot;;
+color: rgb(222, 24, 24);
+background-color: white;
+border-radius: 25px
+}
+QPushButton:hover{
+background-color: &quot;#222222&quot;
+
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;-</string>
+    </property>
    </widget>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
-   <zorder>addEmployeeWidget</zorder>
+   <zorder>consignmentsWidget</zorder>
    <zorder>viewStatisticsWidget</zorder>
    <zorder>addTruckWidget</zorder>
-   <zorder>resetPasswordWidget</zorder>
+   <zorder>employeeWidget</zorder>
    <zorder>addBranchWidget</zorder>
+   <zorder>backButton</zorder>
   </widget>
  </widget>
  <resources/>

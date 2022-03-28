@@ -85,11 +85,16 @@ color: white</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
+     <string notr="true">QPushButton{
 font: 75 20pt &quot;Calibri&quot;;
 color: rgb(222, 24, 24);
 background-color: white;
-border-radius: 25px</string>
+border-radius: 25px
+}
+QPushButton:hover{
+background-color: &quot;#222222&quot;
+
+}</string>
     </property>
     <property name="text">
      <string>&lt;-</string>
@@ -198,10 +203,18 @@ color: #808080</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;League Spartan&quot;;
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
 color: white;
 background-color: rgb(222, 24, 24);
-border-radius: 15px</string>
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
      </property>
      <property name="text">
       <string>Create Employee</string>
