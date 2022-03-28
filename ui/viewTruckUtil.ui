@@ -128,7 +128,7 @@ color: rgb(222,24,24);
 </string>
      </property>
      <property name="text">
-      <string>View Employee Util</string>
+      <string>View Truck Util</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_17">
@@ -161,10 +161,10 @@ color: rgb(222,24,24);
 font: 25 14pt &quot;Calibri&quot;;</string>
      </property>
      <property name="text">
-      <string>Name</string>
+      <string>Plate Number</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="nameLineEdit">
+    <widget class="QLineEdit" name="plateNumberLineEdit">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -281,10 +281,10 @@ color: rgb(222,24,24);
 </string>
      </property>
      <property name="text">
-      <string>Employee details:</string>
+      <string>Truck details:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="truckDetailsQLabel">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -297,7 +297,7 @@ color: rgb(222,24,24);
       <string notr="true">font: 25 15pt &quot;Calibri&quot;;</string>
      </property>
      <property name="text">
-      <string>This text box will show the details of &lt;br&gt;employees if found</string>
+      <string>This text box will show details of trucks &lt;br&gt;if found</string>
      </property>
     </widget>
    </widget>

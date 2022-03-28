@@ -6,6 +6,7 @@ from truck import Truck
 from employee import Employee
 from utility import checkLogin
 import utility
+import manager
 
 
 class loginScreen(QDialog):
@@ -135,7 +136,7 @@ class enterConsignDetailsScreen(QDialog):
         createdConsign.convertToDictAndUpload()
 
 
-class truckScreen(QDialog):
+class truckScreen(QDialog): ####### WIP
     def __init__(self):
         global widget
         widget.setWindowTitle('Truck Management')
@@ -164,11 +165,13 @@ class managerScreen(QDialog):
         global widget
         super(managerScreen, self).__init__()
         self.setObjectName("Manager")
-        loadUi('ui/managerscr.ui', self)
+        loadUi('ui/managerHome.ui', self)
         widget.setWindowTitle("TCC Manager")
         self.viewEmployeeButton.clicked.connect(self.goToViewEmployee)
         self.addEmployeeButton.clicked.connect(self.goToAddEmployee)
         self.backButton.clicked.connect(self.goBack)
+        self.viewTrucksButton.clicked.connect(self.goToViewTrucks)
+        self.addTruckButton.clicked.connect(self.goToAddTruck)
         self.show()
 
     def goBack(self):
@@ -188,6 +191,16 @@ class managerScreen(QDialog):
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
+    def goToViewTrucks(self):
+        currentWindow = ViewTrucksScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    def goToAddTruck(self):
+        currentWindow = AddTruckScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
 
 class ViewEmployeeScreen(QDialog):
     def __init__(self):
@@ -196,7 +209,16 @@ class ViewEmployeeScreen(QDialog):
         super(ViewEmployeeScreen, self).__init__()
         self.setObjectName("ViewEmployee")
         loadUi('ui/viewEmployeeUtil.ui', self)
+        self.backButton.clicked.connect(self.goBack)
         self.show()
+
+    def goBack(self):
+        currentWindow = managerScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() - 1)
+
+    def query(self):
+        manager.employeeQuery(self.IDLineEdit.text(), self.nameLineEdit.text())
 
 
 class AddEmployeeScreen(QDialog):
@@ -205,7 +227,7 @@ class AddEmployeeScreen(QDialog):
         widget.setWindowTitle('Add Employee')
         super(AddEmployeeScreen, self).__init__()
         self.setObjectName("AddEmployee")
-        loadUi('ui/addEmployee.ui', self)
+        loadUi('ui/addEmployeeUtil.ui', self)
         self.backButton.clicked.connect(self.goBack)
         self.CreateEmployeeButton.clicked.connect(self.createEmployee)
         self.show()
@@ -223,12 +245,60 @@ class AddEmployeeScreen(QDialog):
             self.addressLineEdit.text(),
             self.branchLocationLineEdit.text(),
         )
-        createdEmployee.convertToDictAndUpload()
         self.nameLineEdit.setText('')
         self.phoneNumberLineEdit.setText('')
         self.emailLineEdit.setText('')
         self.addressLineEdit.setText('')
         self.branchLocationLineEdit.setText('')
+        createdEmployee.convertToDictAndUpload()
+
+
+class ViewTrucksScreen(QDialog):
+    def __init__(self):
+        global widget
+        widget.setWindowTitle('View Trucks')
+        super(ViewTrucksScreen, self).__init__()
+        self.setObjectName("ViewTrucks")
+        loadUi('ui/viewTruckUtil.ui', self)
+        self.show()
+
+    def goBack(self):
+        currentWindow = managerScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() - 1)
+
+    def query(self):
+        manager.truckQuery(self.IDLineEdit.text(), self.plateNumberLineEdit.text())
+
+
+class AddTruckScreen(QDialog):
+    def __init__(self):
+        global widget
+        widget.setWindowTitle('Add Truck')
+        super(AddTruckScreen, self).__init__()
+        self.setObjectName("AddTruck")
+        loadUi('ui/addTruckUtil.ui', self)
+        self.backButton.clicked.connect(self.goBack)
+        self.CreateTruckButton.clicked.connect(self.createTruck)
+        self.show()
+
+    def goBack(self):
+        currentWindow = managerScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() - 1)
+
+    def createTruck(self):
+        createdTruck = Truck(
+            self.numberPlateLineEdit.text(),
+            self.locationLineEdit.text(),
+            self.driverNameLineEdit.text(),
+            self.driverNumberLineEdit.text(),
+        )
+        self.numberPlateLineEdit.setText('')
+        self.locationLineEdit.setText('')
+        self.driverNameLineEdit.setText('')
+        self.driverNumberLineEdit.setText('')
+        createdTruck.convertToDictAndUpload()
 
 
 utility.setupDB()
