@@ -140,21 +140,17 @@ class truckScreen(QDialog): ####### WIP
         self.backButton.clicked.connect(self.back)
         self.confirmTruckButton.clicked.connect(self.confirmArrivalOfTruck)
         trucksHeaded = utility.truckDB.find({'Next Destination': utility.employeeUser['Branch']})
-        self.comboBox.Clear()
+        self.comboBox.clear()
         for t in trucksHeaded:
             self.comboBox.addItem(str(t['Number Plate']))
         self.show()
-
-    def logout(self):
-        global widget
-        widget.setWindowTitle("TCC Log In")
-        widget.removeWidget(self)
 
     def back(self):
         widget.removeWidget(self)
 
     def confirmArrivalOfTruck(self):
         selectedPlate = self.comboBox.currentText()
+        self.comboBox.removeItem(self.comboBox.currentIndex())
         unloadTruck(selectedPlate)
         
 
