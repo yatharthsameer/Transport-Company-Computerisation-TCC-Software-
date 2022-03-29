@@ -12,8 +12,8 @@ class Employee:
         self.dateOfJoining = utility.today()
 
     def convertToDictAndUpload(self) -> None:
-        id = utility.settings.find_one({'_id': 0})['EmployeeID']
-        utility.settings.update_one({'_id': 0}, {'$set': {'EmployeeID': id + 1}})
+        id = utility.settings.find_one({'_id': 0})['employeeID']
+        utility.settings.update_one({'_id': 0}, {'$set': {'employeeID': id + 1}})
         empArr = utility.branchDB.find_one({'Location': self.branch})['Employees']
         empArr.append(id)
         empNo = len(empArr)

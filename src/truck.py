@@ -12,8 +12,8 @@ class Truck:
         
 
     def convertToDictAndUpload(self) -> None:
-        id = utility.settings.find_one({'_id': 0})['TruckID']
-        utility.settings.update_one({'_id': 0}, {'$set': {'TruckID': id + 1}})
+        id = utility.settings.find_one({'_id': 0})['truckID']
+        utility.settings.update_one({'_id': 0}, {'$set': {'truckID': id + 1}})
         utility.truckDB.insert_one({
             '_id': id,
             'Time Of Purchase' : utility.now(),
@@ -38,15 +38,15 @@ def dispatchTruck(truckID) -> None:
         consign.dispatchConsignment(consignID, truckID)
     utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Enroute', 'Dispatched At': utility.now()}})
 
-def unloadTruck(truckID) -> None:
-    truck = utility.truckDB.find_one({'_id': truckID})
+def unloadTruck(truckPlate) -> None:
+    truck = utility.truckDB.find_one({'Number Plate': truckPlate})
     loc = truck['Next Destination']
     prevLoc = truck['Location']
     History = truck['Delivery History']
     History.append({'From': prevLoc, 'To': loc, 'Dispatched At': truck['Dispatched At'], 'Delivered At': utility.now()})
     for consign in truck['Consignments Loaded']:
         utility.consignDB.update_one({'_id': consign}, {'$set': {'Status': 'Delivered'}})
-    utility.truckDB.update_one({'_id': truckID}, {'$set': {
+    utility.truckDB.update_one({'Number Plate': truckPlate}, {'$set': {
         'Status': 'Available', 
         'Consignments Loaded': [], 
         'Volume Loaded': 0, 

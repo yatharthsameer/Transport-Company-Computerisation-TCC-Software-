@@ -2,7 +2,7 @@ from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog, QStackedWidget
 from PyQt5 import QtCore, QtGui, QtWidgets
 from consign import Consign
-from truck import Truck
+from truck import Truck, unloadTruck
 from employee import Employee
 from utility import checkLogin
 import utility
@@ -63,17 +63,15 @@ class employeeScreen(QDialog):
         self.employeeIDLabel.setText(str(utility.employeeUser['_id']))
         self.emailIDLabel.setText(utility.employeeUser['Email'])
         self.branchLabel.setText(utility.employeeUser['Branch'])
-        self.logoutButton.clicked.connect(self.logout)
-        self.enterConsignmentButton.connect(self.enterDetailsPage)
+        self.backButton.clicked.connect(self.logout)
+        self.enterConsignmentButton.clicked.connect(self.enterDetailsPage)
         self.truckUtilButton.clicked.connect(self.truckPage)
         self.show()
 
     def logout(self):
         global widget
         widget.setWindowTitle("TCC Log In")
-        currentWindow = loginScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
 
     def enterDetailsPage(self):
         currentWindow = enterConsignDetailsScreen()
@@ -105,14 +103,10 @@ class enterConsignDetailsScreen(QDialog):
     def logout(self):
         global widget
         widget.setWindowTitle("TCC Log In")
-        currentWindow = loginScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
 
     def back(self):
-        currentWindow = employeeScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
 
     def createConsignment(self):
         createdConsign = Consign(
@@ -142,22 +136,27 @@ class truckScreen(QDialog): ####### WIP
         widget.setWindowTitle('Truck Management')
         super(truckScreen, self).__init__()
         self.setObjectName("Truck")
-        loadUi('ui/truck.ui', self)
-        self.logoutButton.clicked.connect(self.logout)
+        loadUi('ui/employeeTruckConfirm.ui', self)
         self.backButton.clicked.connect(self.back)
+        self.confirmTruckButton.clicked.connect(self.confirmArrivalOfTruck)
+        trucksHeaded = utility.truckDB.find({'Next Destination': utility.employeeUser['Branch']})
+        self.comboBox.Clear()
+        for t in trucksHeaded:
+            self.comboBox.addItem(str(t['Number Plate']))
         self.show()
 
     def logout(self):
         global widget
         widget.setWindowTitle("TCC Log In")
-        currentWindow = loginScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
 
     def back(self):
-        currentWindow = employeeScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
+
+    def confirmArrivalOfTruck(self):
+        selectedPlate = self.comboBox.currentText()
+        unloadTruck(selectedPlate)
+        
 
 
 class managerScreen(QDialog):
@@ -172,15 +171,14 @@ class managerScreen(QDialog):
         self.backButton.clicked.connect(self.goBack)
         self.viewTrucksButton.clicked.connect(self.goToViewTrucks)
         self.addTruckButton.clicked.connect(self.goToAddTruck)
+        self.consignmentsButton.clicked.connect(self.goToViewConsignment)
         self.addBranchButton.clicked.connect(self.goToAddBranch)
         self.show()
 
     def goBack(self):
         global widget
         widget.setWindowTitle("TCC Log In")
-        currentWindow = loginScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
 
     def goToViewEmployee(self):
         currentWindow = ViewEmployeeScreen()
@@ -207,6 +205,29 @@ class managerScreen(QDialog):
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
+    def goToViewConsignment(self):
+        currentWindow = ViewConsignmentScreen()
+        widget.addWidget(currentWindow)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class ViewConsignmentScreen(QDialog):
+    def __init__(self):
+        global widget
+        widget.setWindowTitle("View Consignment")
+        super(ViewConsignmentScreen, self).__init__()
+        self.setObjectName("View Consignment")
+        loadUi('ui/viewConsignment.ui', self)
+        self.searchConsignment.clicked.connect(self.searchConsignment)
+        self.backButton.clicked.connect(self.back)
+        self.show()
+
+    def searchConsignment(self):
+        return manager.consignmentQuery(self.IDLineEdit.text(), self.senderNameLineEdit.text(), self.receiverNameLineEdit.text())
+
+    def back(self):
+        widget.removeWidget(self)
+
 
 class ViewEmployeeScreen(QDialog):
     def __init__(self):
@@ -216,12 +237,11 @@ class ViewEmployeeScreen(QDialog):
         self.setObjectName("ViewEmployee")
         loadUi('ui/viewEmployeeUtil.ui', self)
         self.backButton.clicked.connect(self.goBack)
+        self.searchButton.clicked.connect(self.query)
         self.show()
 
     def goBack(self):
-        currentWindow = managerScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
 
     def query(self):
         manager.employeeQuery(self.IDLineEdit.text(), self.nameLineEdit.text())
@@ -239,9 +259,7 @@ class AddEmployeeScreen(QDialog):
         self.show()
 
     def goBack(self):
-        currentWindow = managerScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
 
     def createEmployee(self):
         createdEmployee = Employee(
@@ -266,12 +284,12 @@ class ViewTrucksScreen(QDialog):
         super(ViewTrucksScreen, self).__init__()
         self.setObjectName("ViewTrucks")
         loadUi('ui/viewTruckUtil.ui', self)
+        self.backButton.clicked.connect(self.goBack)
+        self.searchButton.clicked.connect(self.query)
         self.show()
 
     def goBack(self):
-        currentWindow = managerScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
 
     def query(self):
         manager.truckQuery(self.IDLineEdit.text(), self.plateNumberLineEdit.text())
@@ -289,9 +307,7 @@ class AddTruckScreen(QDialog):
         self.show()
 
     def goBack(self):
-        currentWindow = managerScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
 
     def createTruck(self):
         createdTruck = Truck(
@@ -319,9 +335,7 @@ class AddBranchScreen(QDialog):
         self.show()
 
     def goBack(self):
-        currentWindow = managerScreen()
-        widget.addWidget(currentWindow)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.removeWidget(self)
 
     def createBranch(self):
         createdBranch = utility.Branch(
