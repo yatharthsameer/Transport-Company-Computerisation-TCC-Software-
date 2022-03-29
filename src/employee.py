@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QMessageBox
 
 
 class Employee:
-    def __init__(self, name, phone, email, address, branch) -> None:
+    def __init__(self, name, phone, email, address, branch) -> None:        # constructor
         self.name = name
         self.phone = phone
         self.email = email
@@ -12,7 +12,7 @@ class Employee:
         self.branch = branch
         self.dateOfJoining = utility.today()
 
-    def convertToDictAndUpload(self) -> None:
+    def convertToDictAndUpload(self) -> None:                    # convert to dictionary and upload to database
         id = utility.settings.find_one({'_id': 0})['employeeID']
         utility.settings.update_one({'_id': 0}, {'$set': {'employeeID': id + 1}})
         empArr = utility.branchDB.find_one({'Location': self.branch})['Employees']
@@ -33,5 +33,5 @@ class Employee:
             'Password': pw})
 
 
-def changePassword(employeeMail, newPassword) -> None:
+def changePassword(employeeMail, newPassword) -> None:          # change password of employee
     utility.employeeDB.update_one({'Email': employeeMail}, {'$set': {'Password': newPassword}})

@@ -4,14 +4,14 @@ import consign
 
 
 class Truck:
-    def __init__(self, numberPlate, CurrentLocation, Driver, driverNumber) -> None:
+    def __init__(self, numberPlate, CurrentLocation, Driver, driverNumber) -> None:         # constructor
         self.numberPlate = numberPlate
         self.CurrentLocation = CurrentLocation
         self.Driver = Driver
         self.driverNumber = driverNumber
         
 
-    def convertToDictAndUpload(self) -> None:
+    def convertToDictAndUpload(self) -> None:           # convert to dictionary and upload to database
         id = utility.settings.find_one({'_id': 0})['truckID']
         utility.settings.update_one({'_id': 0}, {'$set': {'truckID': id + 1}})
         utility.truckDB.insert_one({
@@ -30,15 +30,15 @@ class Truck:
             'Dispatched At': 'NA'})
 
 
-def changeDriver(newDriverName, newDriverPhone, truckPlateNumber) -> None:
+def changeDriver(newDriverName, newDriverPhone, truckPlateNumber) -> None:              # change driver of truck
     utility.truckDB.update_one({'Number Plate': truckPlateNumber}, {'$set': {'Current Driver': newDriverName, 'Driver Phone': newDriverPhone}})
 
-def dispatchTruck(truckID) -> None:
+def dispatchTruck(truckID) -> None:                                        # dispatch truck
     for consignID in utility.truckDB.find_one({'_id': truckID})['Consignments Loaded']:
-        consign.dispatchConsignment(consignID, truckID)
+        consign.dispatchConsignment(consignID, truckID)         # dispatch consignments loaded inside
     utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Enroute', 'Dispatched At': utility.now()}})
 
-def unloadTruck(truckPlate) -> None:
+def unloadTruck(truckPlate) -> None:                              # unload truck and update statistics and history
     truck = utility.truckDB.find_one({'Number Plate': truckPlate})
     num = len(truck['Consignments Loaded'])
     loc = truck['Next Destination']

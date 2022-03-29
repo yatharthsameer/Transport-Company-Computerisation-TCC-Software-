@@ -1,3 +1,4 @@
+import sys
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QStackedWidget, QTableWidgetItem
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -8,7 +9,7 @@ from utility import checkLogin
 import utility
 import manager
 
-
+# login screen
 class loginScreen(QDialog):
     def __init__(self):
         super(loginScreen, self).__init__()
@@ -20,7 +21,7 @@ class loginScreen(QDialog):
         self.passwordLineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
         self.show()
 
-    def login(self):
+    def login(self):    # check login credentials
         user = self.usernameLineEdit.text()
         password = self.passwordLineEdit.text()
         self.usernameLineEdit.setText("")
@@ -34,17 +35,17 @@ class loginScreen(QDialog):
         else:
             self.acceptSU()
 
-    def accept(self):
+    def accept(self):   # login as employee
         currentWindow = employeeScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    def acceptSU(self):
+    def acceptSU(self):     # login as manager
         currentWindow = managerScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    def forgotpassword(self):
+    def forgotpassword(self):       # forgot password, it mails the password to the employee's email; in case the mail does not exist but is in the database it will just ignore the error
         res = utility.mailPassword(self.usernameLineEdit.text())
         if res:
             QMessageBox.information(self, "Password Recovery", "Password has been sent to your email")
@@ -52,7 +53,7 @@ class loginScreen(QDialog):
             QMessageBox.warning(self, "Password Recovery", "Invalid username")
 
 
-class employeeScreen(QDialog):
+class employeeScreen(QDialog):      # employee screen
     def __init__(self):
         global widget
         super(employeeScreen, self).__init__()
@@ -68,24 +69,24 @@ class employeeScreen(QDialog):
         self.truckUtilButton.clicked.connect(self.truckPage)
         self.show()
 
-    def logout(self):
+    def logout(self):       # logout
         global widget
         widget.setWindowTitle("TCC Log In")
         QMessageBox.warning(self, "Logged Out", "You have logged out.")
         widget.removeWidget(self)
 
-    def enterDetailsPage(self):
+    def enterDetailsPage(self):     # enter consignment details 
         currentWindow = enterConsignDetailsScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    def truckPage(self):
+    def truckPage(self):            # accept trucks and unload them
         currentWindow = truckScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
-class enterConsignDetailsScreen(QDialog):
+class enterConsignDetailsScreen(QDialog):       # enter consignment details page
     def __init__(self):
         global widget
         widget.setWindowTitle('Register Consignment')
@@ -100,10 +101,10 @@ class enterConsignDetailsScreen(QDialog):
         self.backButton.clicked.connect(self.back)
         self.show()
 
-    def back(self):
+    def back(self):         # back to employee home
         widget.removeWidget(self)
 
-    def createConsignment(self):
+    def createConsignment(self):       # create consignment and add to database
         createdConsign = Consign(
             self.senderNameLineEdit.text(), 
             self.receiverNameLineEdit.text(), 
@@ -114,6 +115,15 @@ class enterConsignDetailsScreen(QDialog):
             self.volumeLineEdit.text(),
             utility.employeeUser['Branch'],
             self.senderMailLineEdit.text())
+        # if any field is empty discard the operation
+        if createdConsign.SenderName == "" or createdConsign.ReceiverName == "" or createdConsign.SenderPhone == "" or createdConsign.ReceiverPhone == "" or createdConsign.SenderAddress == "" or createdConsign.ReceiverAddress == "" or createdConsign.volume == "":
+            QMessageBox.warning(self, "Empty Field", "Please fill all the fields")
+            return
+        try:
+            a = int(createdConsign.volume)
+        except:
+            QMessageBox.warning(self, "Invalid Volume", "Volume must be a number")
+            return
         self.senderNameLineEdit.setText("") 
         self.receiverNameLineEdit.setText("")
         self.senderMobileNoLineEdit.setText("") 
@@ -126,7 +136,7 @@ class enterConsignDetailsScreen(QDialog):
         utility.loadUnloadedConsignments(utility.employeeUser['Branch'])
 
 
-class truckScreen(QDialog): ####### WIP
+class truckScreen(QDialog):         # truck screen
     def __init__(self):
         global widget
         widget.setWindowTitle('Truck Management')
@@ -141,10 +151,10 @@ class truckScreen(QDialog): ####### WIP
             self.comboBox.addItem(str(t['Number Plate']))
         self.show()
 
-    def back(self):
+    def back(self):         # back to employee home
         widget.removeWidget(self)
 
-    def confirmArrivalOfTruck(self):
+    def confirmArrivalOfTruck(self):            # confirm arrival of truck
         selectedPlate = self.comboBox.currentText()
         self.comboBox.removeItem(self.comboBox.currentIndex())
         unloadTruck(selectedPlate)
@@ -153,7 +163,7 @@ class truckScreen(QDialog): ####### WIP
 
 
 class managerScreen(QDialog):
-    def __init__(self):
+    def __init__(self):         # manager screen
         global widget
         super(managerScreen, self).__init__()
         self.setObjectName("Manager")
@@ -169,49 +179,49 @@ class managerScreen(QDialog):
         self.viewBranchesButton.clicked.connect(self.goToViewBranch)
         self.show()
 
-    def goBack(self):
+    def goBack(self):           # back to home
         global widget
         widget.setWindowTitle("TCC Log In")
         QMessageBox.warning(self, "Logged Out", "You have logged out.")
         widget.removeWidget(self)
 
-    def goToViewEmployee(self):
+    def goToViewEmployee(self):             # go to view employee
         currentWindow = ViewEmployeeScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    def goToAddEmployee(self):
+    def goToAddEmployee(self):          # go to add employee screen
         currentWindow = AddEmployeeScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    def goToViewTrucks(self):
+    def goToViewTrucks(self):           # go to view trucks screen
         currentWindow = ViewTrucksScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    def goToAddTruck(self):
+    def goToAddTruck(self):         # go to add truck screen
         currentWindow = AddTruckScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    def goToViewBranch(self):
+    def goToViewBranch(self):           # go to view branches screen
         currentWindow = ViewBranchScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    def goToAddBranch(self):
+    def goToAddBranch(self):            # go to add branch screen
         currentWindow = AddBranchScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    def goToViewConsignment(self):
+    def goToViewConsignment(self):          # go to view consignments screen
         currentWindow = ViewConsignmentScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
-class ViewConsignmentScreen(QDialog):
+class ViewConsignmentScreen(QDialog):           # view consignments screen
     def __init__(self):
         global widget
         widget.setWindowTitle("View Consignment")
@@ -222,7 +232,7 @@ class ViewConsignmentScreen(QDialog):
         self.backButton.clicked.connect(self.back)
         self.show()
 
-    def searchConsignment(self):
+    def searchConsignment(self):            # search consignments function
         res = list(manager.consignmentQuery(self.IDLineEdit.text(), self.senderNameLineEdit.text(), self.receiverNameLineEdit.text()))
         while self.consignmentTable.rowCount() > 0:
             self.consignmentTable.removeRow(0)
@@ -245,11 +255,11 @@ class ViewConsignmentScreen(QDialog):
             self.consignmentTable.setItem(i, 11, QTableWidgetItem(str(res[i]['Cost'])))
             self.consignmentTable.setItem(i, 13, QTableWidgetItem(str(res[i]['Destination'])))
 
-    def back(self):
+    def back(self):             # back to manager home
         widget.removeWidget(self)
 
 
-class ViewEmployeeScreen(QDialog):
+class ViewEmployeeScreen(QDialog):          # view employee screen
     def __init__(self):
         global widget
         widget.setWindowTitle('Employee Query')
@@ -260,10 +270,10 @@ class ViewEmployeeScreen(QDialog):
         self.searchButton.clicked.connect(self.query)
         self.show()
 
-    def goBack(self):
+    def goBack(self):               # back to manager home
         widget.removeWidget(self)
 
-    def query(self):
+    def query(self):                # query employee function
         res = list(manager.employeeQuery(self.IDLineEdit.text(), self.nameLineEdit.text()))
         self.employeeTable.setRowCount(0)
         self.employeeTable.setRowCount(len(res))
@@ -277,7 +287,7 @@ class ViewEmployeeScreen(QDialog):
             self.employeeTable.setItem(i, 6, QTableWidgetItem(str(res[i]['Date Of Joining'])))
 
 
-class AddEmployeeScreen(QDialog):
+class AddEmployeeScreen(QDialog):               # add employee screen
     def __init__(self):
         global widget
         widget.setWindowTitle('Add Employee')
@@ -288,10 +298,10 @@ class AddEmployeeScreen(QDialog):
         self.CreateEmployeeButton.clicked.connect(self.createEmployee)
         self.show()
 
-    def goBack(self):
+    def goBack(self):           # back to manager home
         widget.removeWidget(self)
 
-    def createEmployee(self):
+    def createEmployee(self):               # create employee function
         createdEmployee = Employee(
             self.nameLineEdit.text(),
             self.phoneNumberLineEdit.text(),
@@ -299,6 +309,13 @@ class AddEmployeeScreen(QDialog):
             self.addressLineEdit.text(),
             self.branchLocationLineEdit.text(),
         )
+        # if any of the fields are empty, show error message
+        if createdEmployee.name == '' or createdEmployee.phone == '' or createdEmployee.email == '' or createdEmployee.address == '' or createdEmployee.branch == '':
+            QMessageBox.warning(self, 'Error', 'Please fill all the fields')
+            return
+        if utility.employeeDB.find_one({'_id': createdEmployee.email}) is not None:
+            QMessageBox.warning(self, 'Error', 'This mail already belongs to an employee. Enter valid details')
+            return
         self.nameLineEdit.setText('')
         self.phoneNumberLineEdit.setText('')
         self.emailLineEdit.setText('')
@@ -307,7 +324,7 @@ class AddEmployeeScreen(QDialog):
         createdEmployee.convertToDictAndUpload()
 
 
-class ViewTrucksScreen(QDialog):
+class ViewTrucksScreen(QDialog):            # view trucks screen
     def __init__(self):
         global widget
         widget.setWindowTitle('View Trucks')
@@ -320,10 +337,10 @@ class ViewTrucksScreen(QDialog):
         self.calcButton.clicked.connect(self.calcIdleTime)
         self.show()
 
-    def goBack(self):
+    def goBack(self):           # back to manager home
         widget.removeWidget(self)
 
-    def query(self):
+    def query(self):            # query trucks function
         res = manager.truckQuery(self.IDLineEdit.text(), self.plateNumberLineEdit.text())
         self.truckTable.setRowCount(1)
         self.truckTable.setItem(0, 0, QTableWidgetItem(str(res['_id'])))
@@ -338,21 +355,27 @@ class ViewTrucksScreen(QDialog):
         self.truckTable.setItem(0, 9, QTableWidgetItem(str(res['Volume Loaded'])))
         self.truckTable.setItem(0, 10, QTableWidgetItem(str(res['Dispatched At'])))
 
-    def history(self):
-        history = manager.viewTruckUsageInPeriod(self.IDLineEdit.text(), self.plateNumberLineEdit.text(), self.fromLineEdit.text(), self.toLineEdit.text())
-        self.historyTable.setRowCount(0)
-        self.historyTable.setRowCount(len(history))
-        for i in range(len(history)):
-            self.historyTable.setItem(i, 0, QTableWidgetItem(str(history[i]['From'])))
-            self.historyTable.setItem(i, 1, QTableWidgetItem(str(history[i]['To'])))
-            self.historyTable.setItem(i, 2, QTableWidgetItem(str(history[i]['Dispatched At'])))
-            self.historyTable.setItem(i, 3, QTableWidgetItem(str(history[i]['Delivered At'])))
+    def history(self):          # view truck history function
+        try:
+            history = manager.viewTruckUsageInPeriod(self.IDLineEdit.text(), self.plateNumberLineEdit.text(), self.fromLineEdit.text(), self.toLineEdit.text())
+            self.historyTable.setRowCount(0)
+            self.historyTable.setRowCount(len(history))
+            for i in range(len(history)):
+                self.historyTable.setItem(i, 0, QTableWidgetItem(str(history[i]['From'])))
+                self.historyTable.setItem(i, 1, QTableWidgetItem(str(history[i]['To'])))
+                self.historyTable.setItem(i, 2, QTableWidgetItem(str(history[i]['Dispatched At'])))
+                self.historyTable.setItem(i, 3, QTableWidgetItem(str(history[i]['Delivered At'])))
+        except:
+            QMessageBox.warning(self, 'Error', 'Please enter dates in DD/MM/YYYY format')
 
-    def calcIdleTime(self):
-        self.idleTimeLineEdit.setText(str(manager.calculateIdleTimeOfTruck(self.IDLineEdit.text(), self.plateNumberLineEdit.text())))
+    def calcIdleTime(self):             # calculate average idle time function
+        try:
+            self.idleTimeLineEdit.setText(str(manager.calculateIdleTimeOfTruck(self.IDLineEdit.text(), self.plateNumberLineEdit.text())))
+        except:
+            QMessageBox.warning(self, 'Error', 'This truck does not exist')
 
 
-class AddTruckScreen(QDialog):
+class AddTruckScreen(QDialog):          # add truck screen
     def __init__(self):
         global widget
         widget.setWindowTitle('Add Truck')
@@ -363,16 +386,20 @@ class AddTruckScreen(QDialog):
         self.CreateTruckButton.clicked.connect(self.createTruck)
         self.show()
 
-    def goBack(self):
+    def goBack(self):           # back to manager home
         widget.removeWidget(self)
 
-    def createTruck(self):
+    def createTruck(self):          # create truck function
         createdTruck = Truck(
             self.numberPlateLineEdit.text(),
             self.locationLineEdit.text(),
             self.driverNameLineEdit.text(),
             self.driverNumberLineEdit.text(),
         )
+        # if any of the fields are empty, show error message
+        if createdTruck.numberPlate == '' or createdTruck.CurrentLocation == '' or createdTruck.Driver == '' or createdTruck.driverNumber == '':
+            QMessageBox.warning(self, 'Error', 'Please fill all the fields')
+            return
         self.numberPlateLineEdit.setText('')
         self.locationLineEdit.setText('')
         self.driverNameLineEdit.setText('')
@@ -382,7 +409,7 @@ class AddTruckScreen(QDialog):
             utility.loadUnloadedConsignments(b['Location'])
 
 
-class ViewBranchScreen(QDialog):
+class ViewBranchScreen(QDialog):            # view branch screen
     def __init__(self):
         global widget
         widget.setWindowTitle('View Branch')
@@ -398,10 +425,10 @@ class ViewBranchScreen(QDialog):
         self.searchConsignmentButton.clicked.connect(self.searchConsignmentsHeaded)
         self.show()
 
-    def goBack(self):
+    def goBack(self):               # back to manager home
         widget.removeWidget(self)
 
-    def query(self):
+    def query(self):            # query branch function
         res = manager.branchQuery(self.locationLineEdit.text())
         if res == None:
             QMessageBox.information(self, "Error", "No Branch Found")
@@ -415,31 +442,34 @@ class ViewBranchScreen(QDialog):
         self.table.setItem(0, 4, QtWidgets.QTableWidgetItem(str(res['Avg. Waiting Time for Consignments'])))
         self.table.setItem(0, 5, QtWidgets.QTableWidgetItem(str(res['No. of Consignments Delivered'])))
 
-    def searchConsignmentsHeaded(self):
-        cost, res = manager.queryConsignmentsHeadedToSameBranch(self.locationLineEdit.text())
-        self.costLineEdit.setText(str(cost))
-        while self.consignmentTable.rowCount() > 0:
-            self.consignmentTable.removeRow(0)
-        self.consignmentTable.setRowCount(len(res))
-        for i in range(len(res)):
-            self.consignmentTable.setItem(i, 0, QTableWidgetItem(str(res[i]['_id'])))
-            self.consignmentTable.setItem(i, 2, QTableWidgetItem(str(res[i]['Sender Name'])))
-            self.consignmentTable.setItem(i, 6, QTableWidgetItem(str(res[i]['Receiver Name'])))
-            self.consignmentTable.setItem(i, 4, QTableWidgetItem(str(res[i]['Sender Phone'])))
-            self.consignmentTable.setItem(i, 8, QTableWidgetItem(str(res[i]['Receiver Phone'])))
-            self.consignmentTable.setItem(i, 3, QTableWidgetItem(str(res[i]['Sender Address'])))
-            self.consignmentTable.setItem(i, 7, QTableWidgetItem(str(res[i]['Receiver Address'])))
-            self.consignmentTable.setItem(i, 1, QTableWidgetItem(str(res[i]['Volume'])))
-            self.consignmentTable.setItem(i, 12, QTableWidgetItem(str(res[i]['At Branch'])))
-            self.consignmentTable.setItem(i, 5, QTableWidgetItem(str(res[i]['Sender Mail'])))
-            self.consignmentTable.setItem(i, 9, QTableWidgetItem(str(res[i]['Date Of Arrival'])))
-            self.consignmentTable.setItem(i, 14, QTableWidgetItem(str(res[i]['Status'])))
-            self.consignmentTable.setItem(i, 10, QTableWidgetItem(str(res[i]['Date Of Dispatch'])))
-            self.consignmentTable.setItem(i, 11, QTableWidgetItem(str(res[i]['Cost'])))
-            self.consignmentTable.setItem(i, 13, QTableWidgetItem(str(res[i]['Destination'])))
+    def searchConsignmentsHeaded(self):             # search consignments headed to this branch 
+        try:
+            cost, res = manager.queryConsignmentsHeadedToSameBranch(self.locationLineEdit.text())
+            self.costLineEdit.setText(str(cost))
+            while self.consignmentTable.rowCount() > 0:
+                self.consignmentTable.removeRow(0)
+            self.consignmentTable.setRowCount(len(res))
+            for i in range(len(res)):
+                self.consignmentTable.setItem(i, 0, QTableWidgetItem(str(res[i]['_id'])))
+                self.consignmentTable.setItem(i, 2, QTableWidgetItem(str(res[i]['Sender Name'])))
+                self.consignmentTable.setItem(i, 6, QTableWidgetItem(str(res[i]['Receiver Name'])))
+                self.consignmentTable.setItem(i, 4, QTableWidgetItem(str(res[i]['Sender Phone'])))
+                self.consignmentTable.setItem(i, 8, QTableWidgetItem(str(res[i]['Receiver Phone'])))
+                self.consignmentTable.setItem(i, 3, QTableWidgetItem(str(res[i]['Sender Address'])))
+                self.consignmentTable.setItem(i, 7, QTableWidgetItem(str(res[i]['Receiver Address'])))
+                self.consignmentTable.setItem(i, 1, QTableWidgetItem(str(res[i]['Volume'])))
+                self.consignmentTable.setItem(i, 12, QTableWidgetItem(str(res[i]['At Branch'])))
+                self.consignmentTable.setItem(i, 5, QTableWidgetItem(str(res[i]['Sender Mail'])))
+                self.consignmentTable.setItem(i, 9, QTableWidgetItem(str(res[i]['Date Of Arrival'])))
+                self.consignmentTable.setItem(i, 14, QTableWidgetItem(str(res[i]['Status'])))
+                self.consignmentTable.setItem(i, 10, QTableWidgetItem(str(res[i]['Date Of Dispatch'])))
+                self.consignmentTable.setItem(i, 11, QTableWidgetItem(str(res[i]['Cost'])))
+                self.consignmentTable.setItem(i, 13, QTableWidgetItem(str(res[i]['Destination'])))
+        except:
+            QMessageBox.warning(self, 'Error', 'This branch does not exist')
 
 
-class AddBranchScreen(QDialog):
+class AddBranchScreen(QDialog):         # add branch screen
     def __init__(self):
         global widget
         widget.setWindowTitle('Add Branch')
@@ -450,14 +480,18 @@ class AddBranchScreen(QDialog):
         self.CreateBranchButton.clicked.connect(self.createBranch)
         self.show()
 
-    def goBack(self):
+    def goBack(self):               # back to manager home
         widget.removeWidget(self)
 
-    def createBranch(self):
+    def createBranch(self):             # create branch function
         createdBranch = utility.Branch(
             self.branchLocationLineEdit.text(),
             self.addressLineEdit.text()
         )
+        # if any of the fields are empty, show error message
+        if createdBranch.location == '' or createdBranch.address == '':
+            QMessageBox.information(self, "Error", "Please fill all the fields")
+            return
         self.branchLocationLineEdit.setText('')
         self.addressLineEdit.setText('')
         createdBranch.convertToDictAndUpload()
@@ -472,4 +506,4 @@ widget.addWidget(currentWindow)
 widget.setFixedHeight(840)
 widget.setFixedWidth(1351)
 widget.show()
-app.exec_()
+sys.exit(app.exec_())

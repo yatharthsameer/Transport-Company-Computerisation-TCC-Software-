@@ -10,12 +10,12 @@ from mail import sendMail
 
 geolocator = Nominatim(user_agent='TCC')
 
-def distance(city1, city2):
+def distance(city1, city2):             # returns distance between two cities in km
     location1 = geolocator.geocode(city1)
     location2 = geolocator.geocode(city2)
     return geodesic((location1.latitude, location1.longitude), (location2.latitude, location2.longitude)).km
 
-def closestBranch(address):
+def closestBranch(address):         # returns the closest branch to the address
     city = address.split(', ')[-1]
     minDistance = 100000
     closestBranch = ''
@@ -27,11 +27,11 @@ def closestBranch(address):
 
 
 class Branch:
-    def __init__(self, location, address) -> None:
+    def __init__(self, location, address) -> None:      # constructor
         self.location = location
         self.address = address
         
-    def convertToDictAndUpload(self) -> None:
+    def convertToDictAndUpload(self) -> None:           # convert to dictionary and upload to database
         global settings
         id = settings.find_one({'_id':0})['BranchID']
         settings.update_one({'_id':0}, {'$set':{'BranchID':id+1}})
@@ -49,7 +49,7 @@ class Branch:
         return Branch(dict['Location'], dict['Address'], dict['Employees'], dict['Number Of Employees'], dict['Revenue'])
 
 
-def checkLogin(username, password):
+def checkLogin(username, password):         # returns true if username and password are correct for employee, 'SU' if the manager, else False
     try:
         if username == "admin" and password == settings.find_one({'_id': 0})['managerPassword']:
             return 'SU'
@@ -63,23 +63,23 @@ def checkLogin(username, password):
     except:
         return False
 
-def stringToDateTime(string):
+def stringToDateTime(string):           # converts string to datetime
     return datetime.strptime(string, '%Y-%m-%d %H:%M:%S.%f')
 
-def generateRandomString():
+def generateRandomString():         # generates a random string of length 8 - 11
     return ''.join(random.choice(string.digits + string.ascii_letters) for _ in range(random.randint(8, 12)))
 
-def deltaTimeToHours(s1, s2):
+def deltaTimeToHours(s1, s2):           # returns the difference between two datetime objects in hours  
     d = s2 - s1
     return (d.days * 24 + d.seconds / 3600)
 
-def today():
+def today():                     # returns today's date in string format
     return str(date.today())
 
-def now():
+def now():                      # returns current time in string format
     return str(datetime.now())
 
-def setupDB():
+def setupDB():                  # sets up the database
     global database, employeeDB, settings, branchDB, truckDB, consignDB
     cluster = pymongo.MongoClient("mongodb://selabproject:selabproject@se-shard-00-00.hl6lf.mongodb.net:27017,se-shard-00-01.hl6lf.mongodb.net:27017,se-shard-00-02.hl6lf.mongodb.net:27017/TCC?ssl=true&replicaSet=atlas-ee0z3v-shard-0&authSource=admin&retryWrites=true&w=majority")
     database = cluster['TCC']
@@ -89,7 +89,7 @@ def setupDB():
     consignDB = database['Consignment']
     truckDB = database['Truck']
 
-def mailPassword(email):
+def mailPassword(email):            # sends reset password to the email
     try:
         # mail password
         password = generateRandomString()
@@ -99,7 +99,7 @@ def mailPassword(email):
     except:
         return False
 
-def nextAvailableTruck(branch, consign):
+def nextAvailableTruck(branch, consign):            # returns the next available truck for the consignment
     nearestBranch = consign['Destination']
     truck = truckDB.find_one({'Location': branch, 'Next Destination': nearestBranch, 'Status': 'Available'}) 
     if truck is not None:
@@ -107,7 +107,7 @@ def nextAvailableTruck(branch, consign):
     truck = truckDB.find_one({'Location': branch, 'Next Destination': 'NA', 'Status': 'Available'}) 
     return truck
 
-def loadUnloadedConsignments(branch):
+def loadUnloadedConsignments(branch):               # loads all unloaded consignments from the database inside given branch
     consignments = list(consignDB.find({'At Branch': branch, 'Status': 'Unloaded'}))
     if len(consignments) == 0:
         return

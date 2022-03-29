@@ -9,9 +9,9 @@ sender_address = 'grp10diy@gmail.com'
 sender_pass = 'diyproject'
 
 
-def sendMail(receiverAddress, billing = False, password = None):
+def sendMail(receiverAddress, billing = False, password = None):            # sending mail utility
     try:
-        if billing:
+        if billing:         # if bill needs to be sent
             mail_content = '''Hello,
             This is an auto mail sent by TCC Services.
             Kindly see the billing of your consignment in the attachment.
@@ -38,7 +38,7 @@ def sendMail(receiverAddress, billing = False, password = None):
             text = message.as_string()
             session.sendmail(sender_address, receiverAddress, text)
             session.quit()
-        else:
+        else:           # if password reset mail needs to be sent
             session = smtplib.SMTP("smtp.gmail.com", 587)
             session.starttls()
             session.login(sender_address, sender_pass)

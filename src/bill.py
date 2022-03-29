@@ -5,7 +5,7 @@ from reportlab.lib.pagesizes import A4
 from mail import sendMail
 
 
-def bill(consignment):
+def bill(consignment):          # generates bill for a consignment in pdf format and mails it to the sender
     Story = []
     doc = SimpleDocTemplate( "bill.pdf" , pagesize = A4 )
     styles = getSampleStyleSheet()

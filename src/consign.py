@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QMessageBox
 
 class Consign:
     def __init__(self, SenderName, ReceiverName, SenderPhone, ReceiverPhone, SenderAddress, ReceiverAddress,  volume, branch, SenderMail) -> None:
-        self.SenderName = SenderName
+        self.SenderName = SenderName        # constructor
         self.ReceiverName = ReceiverName
         self.SenderPhone = SenderPhone
         self.ReceiverPhone = ReceiverPhone
@@ -23,7 +23,7 @@ class Consign:
         self.status = 'Unloaded'
         self.branch = branch
 
-    def convertToDictAndUpload(self) -> None:
+    def convertToDictAndUpload(self) -> None:       # convert to dictionary and upload to database
         id = utility.settings.find_one({'_id': 0})['consignID']
         utility.settings.update_one({'_id': 0}, {'$set': {'consignID': id + 1}})
         utility.consignDB.insert_one({
