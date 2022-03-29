@@ -40,9 +40,9 @@ background-color: white;
   <widget class="QLabel" name="employee_name">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>350</y>
-     <width>251</width>
+     <x>20</x>
+     <y>410</y>
+     <width>411</width>
      <height>61</height>
     </rect>
    </property>
@@ -57,10 +57,10 @@ font: 75 24pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="employeeIDHeading">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>460</y>
-     <width>141</width>
-     <height>31</height>
+     <x>20</x>
+     <y>470</y>
+     <width>171</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -74,8 +74,8 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="Emailaddress_heading">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>550</y>
+     <x>20</x>
+     <y>520</y>
      <width>191</width>
      <height>31</height>
     </rect>
@@ -91,8 +91,8 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="branchHeading">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>640</y>
+     <x>20</x>
+     <y>600</y>
      <width>111</width>
      <height>41</height>
     </rect>
@@ -108,10 +108,10 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="employeeIDLabel">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>500</y>
-     <width>111</width>
-     <height>21</height>
+     <x>200</x>
+     <y>470</y>
+     <width>151</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -125,9 +125,9 @@ font: 25 16pt &quot;Calibri&quot;;</string>
   <widget class="QLabel" name="emailIDLabel">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>570</y>
-     <width>281</width>
+     <x>20</x>
+     <y>550</y>
+     <width>501</width>
      <height>51</height>
     </rect>
    </property>
@@ -142,10 +142,10 @@ font: 25 16pt &quot;Calibri&quot;;</string>
   <widget class="QLabel" name="branchLabel">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>670</y>
+     <x>130</x>
+     <y>600</y>
      <width>211</width>
-     <height>111</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -153,7 +153,7 @@ font: 25 16pt &quot;Calibri&quot;;</string>
 font: 25 16pt &quot;Calibri&quot;;</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;No 28 Gupta Road,&lt;br/&gt;Anna Nagar,&lt;br/&gt;Chennai, 600010&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;No 28 Gupta &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -196,7 +196,7 @@ font: 75 28pt &quot;League Spartan&quot;;</string>
     <rect>
      <x>970</x>
      <y>250</y>
-     <width>231</width>
+     <width>251</width>
      <height>61</height>
     </rect>
    </property>
@@ -268,7 +268,7 @@ color: rgb(222, 24, 24);
     <rect>
      <x>650</x>
      <y>150</y>
-     <width>471</width>
+     <width>511</width>
      <height>61</height>
     </rect>
    </property>

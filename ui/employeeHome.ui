@@ -40,8 +40,8 @@ background-color:white;
   <widget class="QLabel" name="employee_name">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>350</y>
+     <x>10</x>
+     <y>390</y>
      <width>261</width>
      <height>61</height>
     </rect>
@@ -57,8 +57,8 @@ font: 75 24pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="employeeIDHeading">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>460</y>
+     <x>10</x>
+     <y>490</y>
      <width>171</width>
      <height>31</height>
     </rect>
@@ -74,7 +74,7 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="Emailaddress_heading">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>10</x>
      <y>550</y>
      <width>181</width>
      <height>31</height>
@@ -91,7 +91,7 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="branchHeading">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>10</x>
      <y>640</y>
      <width>111</width>
      <height>41</height>
@@ -108,10 +108,10 @@ font: 75 16pt &quot;League Spartan&quot;;</string>
   <widget class="QLabel" name="employeeIDLabel">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>500</y>
-     <width>121</width>
-     <height>21</height>
+     <x>190</x>
+     <y>490</y>
+     <width>141</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -125,9 +125,9 @@ font: 25 16pt &quot;Calibri&quot;;</string>
   <widget class="QLabel" name="emailIDLabel">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>580</y>
-     <width>281</width>
+     <x>10</x>
+     <y>590</y>
+     <width>491</width>
      <height>41</height>
     </rect>
    </property>
@@ -142,10 +142,10 @@ font: 25 16pt &quot;Calibri&quot;;</string>
   <widget class="QLabel" name="branchLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>670</y>
-     <width>211</width>
-     <height>111</height>
+     <x>130</x>
+     <y>640</y>
+     <width>351</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -153,7 +153,7 @@ font: 25 16pt &quot;Calibri&quot;;</string>
 font: 25 16pt &quot;Calibri&quot;;</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;No 28 Gupta Road,&lt;br/&gt;Anna Nagar,&lt;br/&gt;Chennai, 600010&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ujhv&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -196,7 +196,7 @@ font: 75 28pt &quot;League Spartan&quot;;</string>
     <rect>
      <x>640</x>
      <y>500</y>
-     <width>291</width>
+     <width>311</width>
      <height>51</height>
     </rect>
    </property>
@@ -259,9 +259,9 @@ border-color: rgb(222,24,24)
   <widget class="QPushButton" name="truckUtilButton">
    <property name="geometry">
     <rect>
-     <x>980</x>
+     <x>1000</x>
      <y>500</y>
-     <width>191</width>
+     <width>211</width>
      <height>51</height>
     </rect>
    </property>
@@ -280,7 +280,7 @@ border-color: rgb(222,24,24)
 }</string>
    </property>
    <property name="text">
-    <string>Truck Util</string>
+    <string>Truck Utility</string>
    </property>
   </widget>
   <widget class="QPushButton" name="backButton">

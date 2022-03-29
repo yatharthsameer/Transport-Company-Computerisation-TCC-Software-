@@ -65,7 +65,7 @@ def loadConsignment(consignID, truck) -> None:
     loaded = truck['Consignments Loaded']
     loaded.append(consignID)
     consign = utility.consignDB.find_one({'_id': consignID})
-    QMessageBox.warning(
+    QMessageBox.information(
         None, "Load Consignment: {}".format(consignID), 
         "Volume: {}\nDestination: {}\nSender's Name: {}\nSender's Address: {}\nReciever's Name: {}, Reciever's Address: {}".format(
         consign['Volume'], consign['Destination'], consign['Sender Name'], consign['Sender Address'], consign['Receiver Name'], consign['Receiver Address']))
@@ -73,7 +73,7 @@ def loadConsignment(consignID, truck) -> None:
     if truck['Next Destination'] == 'NA':
         truck['Next Destination'] = consign['Destination']
         utility.truckDB.update_one({'_id': truckID}, {'$set': {'Next Destination': truck['Next Destination']}})
-    cost = int(newVol * log(300 + utility.distance(consign['At Branch'], truck['Next Destination'])))
+    cost = int(100 * newVol * log(200 + utility.distance(consign['At Branch'], truck['Next Destination'])))
     curVol += newVol
     utility.consignDB.update_one({'_id': consignID}, {'$set': {'Status': 'Loaded on truck ' + truck['Number Plate'], 'Delivered By Truck': truckID, 'Cost': cost}})
     utility.branchDB.update_one({'Location': consign['At Branch']}, {'$set': {'Revenue': utility.branchDB.find_one({'Location': consign['At Branch']})['Revenue'] + cost}})

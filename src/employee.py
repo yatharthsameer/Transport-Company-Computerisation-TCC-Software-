@@ -1,5 +1,6 @@
 import pymongo
 import utility
+from PyQt5.QtWidgets import QMessageBox
 
 
 class Employee:
@@ -18,6 +19,7 @@ class Employee:
         empArr.append(id)
         empNo = len(empArr)
         pw = utility.generateRandomString()
+        QMessageBox.information(self, "Account Generated", "Check the password in the email sent.")
         utility.sendMail(self.email, False, pw)
         utility.branchDB.update_one({'Location': self.branch}, {'$set': {'Number Of Employees': empNo, 'Employees': empArr}})
         utility.employeeDB.insert_one({

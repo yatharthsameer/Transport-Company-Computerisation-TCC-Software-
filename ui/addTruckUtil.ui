@@ -128,7 +128,7 @@ color: rgb(222,24,24);
 </string>
      </property>
      <property name="text">
-      <string>Add Truck Util</string>
+      <string>Register Truck</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_17">
@@ -217,7 +217,7 @@ border-color: rgb(222,24,24)
 }</string>
      </property>
      <property name="text">
-      <string>Create Truck</string>
+      <string>Register Truck</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="driverNumberLineEdit">

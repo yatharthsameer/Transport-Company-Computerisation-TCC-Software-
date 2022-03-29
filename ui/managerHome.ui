@@ -47,10 +47,10 @@
    <widget class="QWidget" name="employeeWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>230</y>
+      <x>540</x>
+      <y>40</y>
       <width>401</width>
-      <height>571</height>
+      <height>451</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -60,9 +60,9 @@ border-radius: 10px</string>
     <widget class="QPushButton" name="addEmployeeButton">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>490</y>
-       <width>301</width>
+       <x>210</x>
+       <y>360</y>
+       <width>161</width>
        <height>61</height>
       </rect>
      </property>
@@ -81,7 +81,7 @@ border-color: rgb(222,24,24)
 }</string>
      </property>
      <property name="text">
-      <string>Add Employee</string>
+      <string>Add</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_12">
@@ -99,7 +99,7 @@ color: rgb(222,24,24);
 text-decoration: underline;</string>
      </property>
      <property name="text">
-      <string>Employee Util</string>
+      <string>Employee DB</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_13">
@@ -107,7 +107,7 @@ text-decoration: underline;</string>
       <rect>
        <x>30</x>
        <y>100</y>
-       <width>231</width>
+       <width>241</width>
        <height>171</height>
       </rect>
      </property>
@@ -115,15 +115,15 @@ text-decoration: underline;</string>
       <string notr="true">font: 25 12pt &quot;Calibri&quot;;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to register or &lt;br/&gt;deregister employees to the &lt;br/&gt;company. &lt;br/&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Utility allows you to register &lt;/p&gt;&lt;p&gt;and view employees. &lt;br/&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QPushButton" name="viewEmployeeButton">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>410</y>
-       <width>301</width>
+       <x>210</x>
+       <y>280</y>
+       <width>161</width>
        <height>61</height>
       </rect>
      </property>
@@ -142,7 +142,7 @@ border-color: rgb(222,24,24)
 }</string>
      </property>
      <property name="text">
-      <string>View Employee</string>
+      <string>View</string>
      </property>
     </widget>
    </widget>
@@ -151,7 +151,7 @@ border-color: rgb(222,24,24)
      <rect>
       <x>50</x>
       <y>50</y>
-      <width>181</width>
+      <width>221</width>
       <height>91</height>
      </rect>
     </property>
@@ -168,8 +168,8 @@ color: white;</string>
      <rect>
       <x>50</x>
       <y>140</y>
-      <width>301</width>
-      <height>41</height>
+      <width>371</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -217,7 +217,7 @@ border-color: rgb(222,24,24)
 }</string>
      </property>
      <property name="text">
-      <string>Consignments</string>
+      <string>View</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_10">
@@ -233,7 +233,7 @@ border-color: rgb(222,24,24)
       <string notr="true">font: 25 12pt &quot;Calibri&quot;;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to query &lt;br/&gt;statistics on consignments&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Utility allows you to query &lt;br/&gt; consignments&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_11">
@@ -252,81 +252,6 @@ text-decoration: underline;</string>
      </property>
      <property name="text">
       <string>Consignments</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="viewStatisticsWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>40</y>
-      <width>481</width>
-      <height>451</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;
-border-radius: 10px</string>
-    </property>
-    <widget class="QPushButton" name="viewStatisticsButton">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>370</y>
-       <width>231</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton{
-font: 75 20pt &quot;League Spartan&quot;;
-color: white;
-background-color: rgb(222, 24, 24);
-border-radius: 15px
-}
-QPushButton:hover{
-background-color: '#eeeeee';
-color: rgb(222, 24, 24);
-border: 2px;
-border-color: rgb(222,24,24)
-}</string>
-     </property>
-     <property name="text">
-      <string>View Statistics</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_8">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>110</y>
-       <width>421</width>
-       <height>101</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 25 12pt &quot;Calibri&quot;;</string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to view statistics relevant to the&lt;br&gt;company. You will obtain the option to query stats on&lt;br&gt;various aspects such as company revenue, truck locations,&lt;br&gt; consigment details etc&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_9">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>40</y>
-       <width>311</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 75 24pt &quot;League Spartan&quot;;
-color: rgb(222,24,24);
-text-decoration: underline;</string>
-     </property>
-     <property name="text">
-      <string>View Statistics Util</string>
      </property>
     </widget>
    </widget>
@@ -367,7 +292,7 @@ border-color: rgb(222,24,24)
 }</string>
      </property>
      <property name="text">
-      <string>Add truck</string>
+      <string>Add</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_6">
@@ -385,7 +310,7 @@ color: rgb(222,24,24);
 text-decoration: underline;</string>
      </property>
      <property name="text">
-      <string>Truck Util</string>
+      <string>Truck DB</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">
@@ -401,7 +326,7 @@ text-decoration: underline;</string>
       <string notr="true">font: 25 12pt &quot;Calibri&quot;;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to register or deregister trucks to the &lt;br&gt;company. It also shows the list of trucks&lt;br&gt;currently registered with options to manage them&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to register trucks to the &lt;br/&gt;company. It also shows the list of trucks&lt;br/&gt;currently registered with options to manage them&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QPushButton" name="viewTrucksButton">
@@ -428,7 +353,7 @@ border-color: rgb(222,24,24)
 }</string>
      </property>
      <property name="text">
-      <string>View Trucks</string>
+      <string>View</string>
      </property>
     </widget>
    </widget>
@@ -448,9 +373,9 @@ border-radius: 10px</string>
     <widget class="QPushButton" name="addBranchButton">
      <property name="geometry">
       <rect>
-       <x>80</x>
+       <x>130</x>
        <y>370</y>
-       <width>231</width>
+       <width>181</width>
        <height>61</height>
       </rect>
      </property>
@@ -469,7 +394,7 @@ border-color: rgb(222,24,24)
 }</string>
      </property>
      <property name="text">
-      <string>Add Branch</string>
+      <string>Add</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_4">
@@ -487,7 +412,7 @@ color: rgb(222,24,24);
 text-decoration: underline;</string>
      </property>
      <property name="text">
-      <string>Branch Util</string>
+      <string>Branch DB</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -503,15 +428,15 @@ text-decoration: underline;</string>
       <string notr="true">font: 25 12pt &quot;Calibri&quot;;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Util allows you to register or&lt;br/&gt;deregister branches to the company. &lt;br/&gt;It will also show the list of branches&lt;br/&gt;currently registered&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This Utility allows you to register &lt;/p&gt;&lt;p&gt;and view branch and its statistics. &lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QPushButton" name="viewBranchesButton">
      <property name="geometry">
       <rect>
-       <x>80</x>
+       <x>130</x>
        <y>290</y>
-       <width>231</width>
+       <width>181</width>
        <height>61</height>
       </rect>
      </property>
@@ -530,15 +455,15 @@ border-color: rgb(222,24,24)
 }</string>
      </property>
      <property name="text">
-      <string>View Branches</string>
+      <string>View</string>
      </property>
     </widget>
    </widget>
    <widget class="QPushButton" name="backButton">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>130</y>
+      <x>430</x>
+      <y>140</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -563,7 +488,6 @@ background-color: &quot;#222222&quot;
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
    <zorder>consignmentsWidget</zorder>
-   <zorder>viewStatisticsWidget</zorder>
    <zorder>addTruckWidget</zorder>
    <zorder>employeeWidget</zorder>
    <zorder>addBranchWidget</zorder>
