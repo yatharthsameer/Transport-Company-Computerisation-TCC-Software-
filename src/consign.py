@@ -3,6 +3,7 @@ import pymongo
 import utility
 from truck import dispatchTruck
 from bill import bill
+from PyQt5.QtWidgets import QMessageBox
 
 
 class Consign:
@@ -64,6 +65,10 @@ def loadConsignment(consignID, truck) -> None:
     loaded = truck['Consignments Loaded']
     loaded.append(consignID)
     consign = utility.consignDB.find_one({'_id': consignID})
+    QMessageBox.warning(
+        None, "Load Consignment: {}".format(consignID), 
+        "Volume: {}\nDestination: {}\nSender's Name: {}\nSender's Address: {}\nReciever's Name: {}, Reciever's Address: {}".format(
+        consign['Volume'], consign['Destination'], consign['Sender Name'], consign['Sender Address'], consign['Receiver Name'], consign['Receiver Address']))
     newVol = consign['Volume']
     if truck['Next Destination'] == 'NA':
         truck['Next Destination'] = consign['Destination']

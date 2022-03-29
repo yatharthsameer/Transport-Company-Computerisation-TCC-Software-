@@ -42,7 +42,7 @@ class Branch:
             'Number Of Employees': 0, 
             'Employees': [], 
             'Revenue': 0,
-            'Avg. Waiting Time for Consignments': 0,
+            'Avg. Waiting Time for Consignments': 0.00,
             'No. of Consignments Delivered': 0})
 
     def convertFromDict(dict):

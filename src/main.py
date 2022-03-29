@@ -71,6 +71,7 @@ class employeeScreen(QDialog):
     def logout(self):
         global widget
         widget.setWindowTitle("TCC Log In")
+        QMessageBox.warning(self, "Logged Out", "You have logged out.")
         widget.removeWidget(self)
 
     def enterDetailsPage(self):
@@ -171,6 +172,7 @@ class managerScreen(QDialog):
     def goBack(self):
         global widget
         widget.setWindowTitle("TCC Log In")
+        QMessageBox.warning(self, "Logged Out", "You have logged out.")
         widget.removeWidget(self)
 
     def goToViewEmployee(self):
@@ -376,6 +378,8 @@ class AddTruckScreen(QDialog):
         self.driverNameLineEdit.setText('')
         self.driverNumberLineEdit.setText('')
         createdTruck.convertToDictAndUpload()
+        for b in list(utility.branchDB.find()):
+            utility.loadUnloadedConsignments(b['Location'])
 
 
 class ViewBranchScreen(QDialog):

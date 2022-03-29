@@ -43,6 +43,8 @@ def unloadTruck(truckPlate) -> None:
     num = len(truck['Consignments Loaded'])
     loc = truck['Next Destination']
     prevLoc = truck['Location']
+    deliveriesByBranch = utility.branchDB.find_one({'Location': prevLoc})['No. of Consignments Delivered']
+    utility.branchDB.update_one({'Location': prevLoc}, {'$set': {'No. of Consignments Delivered': deliveriesByBranch + num}})
     History = truck['Delivery History']
     History.append({'From': prevLoc, 'To': loc, 'Dispatched At': truck['Dispatched At'], 'Delivered At': utility.now()})
     for consign in truck['Consignments Loaded']:
