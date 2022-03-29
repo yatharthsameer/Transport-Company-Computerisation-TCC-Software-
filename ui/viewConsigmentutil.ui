@@ -44,10 +44,10 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>50</y>
-      <width>181</width>
-      <height>91</height>
+      <x>30</x>
+      <y>30</y>
+      <width>231</width>
+      <height>111</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -61,10 +61,10 @@ color: white;</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>140</y>
-      <width>301</width>
-      <height>41</height>
+      <x>30</x>
+      <y>110</y>
+      <width>371</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -78,8 +78,8 @@ color: white</string>
    <widget class="QPushButton" name="backButton">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>130</y>
+      <x>400</x>
+      <y>120</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -117,9 +117,9 @@ border-radius: 10px</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>40</y>
-       <width>321</width>
-       <height>51</height>
+       <y>20</y>
+       <width>451</width>
+       <height>71</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -128,7 +128,7 @@ color: rgb(222,24,24);
 </string>
      </property>
      <property name="text">
-      <string>View Consigmnent Util</string>
+      <string>View Consigmnent</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_17">
@@ -151,9 +151,9 @@ color: rgb(222,24,24);
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>160</y>
-       <width>121</width>
-       <height>16</height>
+       <y>155</y>
+       <width>131</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -270,9 +270,9 @@ font: 25 14pt &quot;Calibri&quot;;</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>380</y>
-       <width>361</width>
-       <height>51</height>
+       <y>370</y>
+       <width>411</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -287,9 +287,9 @@ color: rgb(222,24,24);
     <widget class="QWidget" name="widget_2" native="true">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>0</x>
        <y>440</y>
-       <width>721</width>
+       <width>851</width>
        <height>251</height>
       </rect>
      </property>
@@ -298,78 +298,93 @@ color: rgb(222,24,24);
 background-color: '#eeeeee'
 }</string>
      </property>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="consignmentTable">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>0</x>
         <y>20</y>
-        <width>211</width>
+        <width>841</width>
         <height>211</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
-      <row>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>4</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>5</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>6</string>
-       </property>
-      </row>
       <column>
        <property name="text">
-        <string>Property</string>
+        <string>ID</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Details</string>
+        <string>Volume</string>
        </property>
       </column>
-      <item row="0" column="0">
+      <column>
        <property name="text">
-        <string>PlateNo</string>
+        <string>Sender Name</string>
        </property>
-      </item>
-      <item row="1" column="0">
+      </column>
+      <column>
        <property name="text">
-        <string>DriverNo</string>
+        <string>Sender Address</string>
        </property>
-      </item>
-      <item row="2" column="0">
+      </column>
+      <column>
        <property name="text">
-        <string>DriverName</string>
+        <string>Sender Mob. No.</string>
        </property>
-      </item>
-      <item row="3" column="0">
+      </column>
+      <column>
        <property name="text">
-        <string>Location</string>
+        <string>Sender Mail</string>
        </property>
-      </item>
-      <item row="4" column="0">
+      </column>
+      <column>
        <property name="text">
-        <string>idLoaded</string>
+        <string>Receiver Name</string>
        </property>
-      </item>
+      </column>
+      <column>
+       <property name="text">
+        <string>Receiver Address</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Receiver Mob. No.</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Time Of Arrival</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Time Of Dispatch</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Cost</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>At Branch</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Destination</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Status</string>
+       </property>
+      </column>
      </widget>
     </widget>
     <widget class="QLabel" name="label_13">
@@ -418,7 +433,6 @@ font: 25 12pt &quot;Calibri&quot;;
 color: #808080</string>
      </property>
     </widget>
-    <zorder>widget_2</zorder>
     <zorder>label_16</zorder>
     <zorder>label_17</zorder>
     <zorder>label_11</zorder>
@@ -429,6 +443,7 @@ color: #808080</string>
     <zorder>label_4</zorder>
     <zorder>label_13</zorder>
     <zorder>senderNameLineEdit</zorder>
+    <zorder>widget_2</zorder>
    </widget>
   </widget>
  </widget>

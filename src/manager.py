@@ -4,7 +4,7 @@ import utility
 
 
 def branchQuery(branchName):
-    return utility.truckDB.find_one({'Location': branchName})
+    return utility.branchDB.find_one({'Location': branchName})
 
 
 def truckQuery(id, plate):
@@ -15,20 +15,20 @@ def truckQuery(id, plate):
 
 def employeeQuery(id, name):
     if id != '':
-        return utility.employeeDB.find_one({'_id': int(id)})
+        return utility.employeeDB.find({'_id': int(id)})
     else:
-        return utility.employeeDB.find_one({'Name': name})
+        return utility.employeeDB.find({'Name': name})
 
 def consignmentQuery(id, sendername, receiverName):
     if id != '':
-        return utility.consignmentDB.find_one({'_id': int(id)})
+        return utility.consignDB.find({'_id': int(id)})
     elif sendername != '':
-        return utility.consignmentDB.find_one({'Sender Name': sendername, 'Receiver Name': sendername})
+        return utility.consignDB.find({'Sender Name': sendername, 'Receiver Name': sendername})
     else:
-        return utility.consignmentDB.find_one({'Receiver Name': receiverName})
+        return utility.consignDB.find({'Receiver Name': receiverName})
 
 def queryConsignmentsHeadedToSameBranch(branchName):
-    result = utility.consignmentDB.find({'Destination': branchName, 'Status': 'Dispatched'})
+    result = utility.consignDB.find({'Destination': branchName, 'Status': 'Dispatched'})
     revenue = 0
     for consign in result:
         revenue += consign['Cost']

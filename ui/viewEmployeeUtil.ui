@@ -44,10 +44,10 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>50</y>
-      <width>181</width>
-      <height>91</height>
+      <x>30</x>
+      <y>40</y>
+      <width>211</width>
+      <height>101</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -61,10 +61,10 @@ color: white;</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>140</y>
-      <width>301</width>
-      <height>41</height>
+      <x>30</x>
+      <y>130</y>
+      <width>371</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -78,7 +78,7 @@ color: white</string>
    <widget class="QPushButton" name="backButton">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>400</x>
       <y>130</y>
       <width>51</width>
       <height>51</height>
@@ -128,7 +128,7 @@ color: rgb(222,24,24);
 </string>
      </property>
      <property name="text">
-      <string>View Employee Util</string>
+      <string>View Employee</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_17">
@@ -271,7 +271,7 @@ font: 25 14pt &quot;Calibri&quot;;</string>
       <rect>
        <x>60</x>
        <y>350</y>
-       <width>301</width>
+       <width>341</width>
        <height>51</height>
       </rect>
      </property>
@@ -284,21 +284,50 @@ color: rgb(222,24,24);
       <string>Employee details:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
+    <widget class="QTableWidget" name="employeeTable">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>20</x>
        <y>420</y>
-       <width>461</width>
-       <height>211</height>
+       <width>811</width>
+       <height>301</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">font: 25 15pt &quot;Calibri&quot;;</string>
-     </property>
-     <property name="text">
-      <string>This text box will show the details of &lt;br&gt;employees if found</string>
-     </property>
+     <column>
+      <property name="text">
+       <string>ID</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Phone No.</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Email</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Address</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Branch</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Joining Date</string>
+      </property>
+     </column>
     </widget>
    </widget>
   </widget>

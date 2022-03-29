@@ -44,10 +44,10 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>50</y>
-      <width>181</width>
-      <height>91</height>
+      <x>20</x>
+      <y>40</y>
+      <width>231</width>
+      <height>101</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -61,10 +61,10 @@ color: white;</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>140</y>
-      <width>301</width>
-      <height>41</height>
+      <x>20</x>
+      <y>130</y>
+      <width>371</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -78,7 +78,7 @@ color: white</string>
    <widget class="QPushButton" name="backButton">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>390</x>
       <y>130</y>
       <width>51</width>
       <height>51</height>
@@ -128,7 +128,7 @@ color: rgb(222,24,24);
 </string>
      </property>
      <property name="text">
-      <string>View Truck Util</string>
+      <string>View Truck</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_17">
@@ -284,21 +284,70 @@ color: rgb(222,24,24);
       <string>Truck details:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="truckDetailsQLabel">
+    <widget class="QTableWidget" name="truckTable">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>420</y>
-       <width>461</width>
-       <height>211</height>
+       <x>0</x>
+       <y>440</y>
+       <width>851</width>
+       <height>161</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">font: 25 15pt &quot;Calibri&quot;;</string>
-     </property>
-     <property name="text">
-      <string>This text box will show details of trucks &lt;br&gt;if found</string>
-     </property>
+     <column>
+      <property name="text">
+       <string>ID</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Time Of Purchase</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Net Deliveries</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Current Driver</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Location</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Number Plate</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Driver Phone</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Status</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Next Destination</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Volume Loaded</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Dispatched At</string>
+      </property>
+     </column>
     </widget>
    </widget>
   </widget>
