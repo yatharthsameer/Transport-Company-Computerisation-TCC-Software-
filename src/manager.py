@@ -28,7 +28,7 @@ def consignmentQuery(id, sendername, receiverName):
         return utility.consignDB.find({'Receiver Name': receiverName})
 
 def queryConsignmentsHeadedToSameBranch(branchName):
-    result = utility.consignDB.find({'Destination': branchName, 'Status': 'Dispatched'})
+    result = list(utility.consignDB.find({'Destination': branchName, 'Status': 'Dispatched'}))
     revenue = 0
     for consign in result:
         revenue += consign['Cost']
@@ -38,11 +38,11 @@ def calculateIdleTimeOfTruck(id, plate):
     truck = truckQuery(id, plate)
     if len(truck['Delivery History']) == 0:
         return 24
-    netIdleTime = utility.deltaTimeToHours(utility.stringToDateTime(truck['Date Of Purchase']), utility.stringToDateTime(truck['Delivery History'][0]['Dispatched At']))
+    netIdleTime = utility.deltaTimeToHours(utility.stringToDateTime(truck['Time Of Purchase']), utility.stringToDateTime(truck['Delivery History'][0]['Dispatched At']))
     for i in range(len(truck['Delivery History'])-1):
         netIdleTime += utility.deltaTimeToHours(utility.stringToDateTime(truck['Delivery History'][i]['Delivered At']), utility.stringToDateTime(truck['Delivery History'][i+1]['Dispatched At']))
     if truck['Dispatched At'] == 'NA':
-        netIdleTime += utility.deltaTimeToHours(utility.stringToDateTime(truck['Delivery History'][-1]['Delivered At']), utility.now())
+        netIdleTime += utility.deltaTimeToHours(utility.stringToDateTime(truck['Delivery History'][-1]['Delivered At']), utility.stringToDateTime(utility.now()))
     else:
         netIdleTime += utility.deltaTimeToHours(utility.stringToDateTime(truck['Delivery History'][-1]['Delivered At']), utility.stringToDateTime(truck['Dispatched At']))
     return netIdleTime

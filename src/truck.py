@@ -40,6 +40,7 @@ def dispatchTruck(truckID) -> None:
 
 def unloadTruck(truckPlate) -> None:
     truck = utility.truckDB.find_one({'Number Plate': truckPlate})
+    num = len(truck['Consignments Loaded'])
     loc = truck['Next Destination']
     prevLoc = truck['Location']
     History = truck['Delivery History']
@@ -52,6 +53,6 @@ def unloadTruck(truckPlate) -> None:
         'Volume Loaded': 0, 
         'Next Destination': 'NA', 
         'Location': loc, 
-        'Total Consignments Delivered': truck['Total Consignments Delivered'] + 1, 
+        'Total Consignments Delivered': truck['Total Consignments Delivered'] + num, 
         'Delivery History': History, 
         'Dispatched At': 'NA'}})

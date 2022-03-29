@@ -117,7 +117,7 @@ border-radius: 10px</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>50</y>
+       <y>10</y>
        <width>321</width>
        <height>51</height>
       </rect>
@@ -131,27 +131,11 @@ color: rgb(222,24,24);
       <string>View Truck</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_17">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>100</y>
-       <width>421</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 25 13pt &quot;Calibri&quot;;</string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the details of the employee you wish&lt;br/&gt;to view. Fill any field to search&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_11">
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>170</y>
+       <y>70</y>
        <width>121</width>
        <height>16</height>
       </rect>
@@ -168,7 +152,7 @@ font: 25 14pt &quot;Calibri&quot;;</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>190</y>
+       <y>90</y>
        <width>381</width>
        <height>41</height>
       </rect>
@@ -197,7 +181,7 @@ color: #808080</string>
      <property name="geometry">
       <rect>
        <x>540</x>
-       <y>210</y>
+       <y>100</y>
        <width>191</width>
        <height>61</height>
       </rect>
@@ -224,7 +208,7 @@ border-color: rgb(222,24,24)
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>260</y>
+       <y>160</y>
        <width>381</width>
        <height>41</height>
       </rect>
@@ -253,7 +237,7 @@ color: #808080</string>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>240</y>
+       <y>140</y>
        <width>121</width>
        <height>16</height>
       </rect>
@@ -270,7 +254,7 @@ font: 25 14pt &quot;Calibri&quot;;</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>350</y>
+       <y>220</y>
        <width>301</width>
        <height>51</height>
       </rect>
@@ -288,9 +272,9 @@ color: rgb(222,24,24);
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>440</y>
+       <y>280</y>
        <width>851</width>
-       <height>161</height>
+       <height>91</height>
       </rect>
      </property>
      <column>
@@ -348,6 +332,228 @@ color: rgb(222,24,24);
        <string>Dispatched At</string>
       </property>
      </column>
+    </widget>
+    <widget class="QPushButton" name="calcButton">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>380</y>
+       <width>191</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
+color: white;
+background-color: rgb(222, 24, 24);
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
+     </property>
+     <property name="text">
+      <string>Calculate</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>400</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Average Idle Time / day</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="idleTimeLineEdit">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>390</y>
+       <width>171</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Calibri</family>
+       <pointsize>12</pointsize>
+       <weight>3</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="historyTable">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>460</y>
+       <width>601</width>
+       <height>291</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>From</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>To</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Dispatched At</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Delivered At</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QLineEdit" name="fromLineEdit">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>500</y>
+       <width>171</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Calibri</family>
+       <pointsize>12</pointsize>
+       <weight>3</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="toLineEdit">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>590</y>
+       <width>171</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Calibri</family>
+       <pointsize>12</pointsize>
+       <weight>3</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>480</y>
+       <width>121</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+     </property>
+     <property name="text">
+      <string>From</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>570</y>
+       <width>121</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+     </property>
+     <property name="text">
+      <string>To</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="historyButton">
+     <property name="geometry">
+      <rect>
+       <x>640</x>
+       <y>660</y>
+       <width>201</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
+color: white;
+background-color: rgb(222, 24, 24);
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
+     </property>
+     <property name="text">
+      <string>See History</string>
+     </property>
     </widget>
    </widget>
   </widget>

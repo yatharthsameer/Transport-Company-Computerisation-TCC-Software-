@@ -17,6 +17,8 @@ class Employee:
         empArr = utility.branchDB.find_one({'Location': self.branch})['Employees']
         empArr.append(id)
         empNo = len(empArr)
+        pw = utility.generateRandomString()
+        utility.sendMail(self.email, False, pw)
         utility.branchDB.update_one({'Location': self.branch}, {'$set': {'Number Of Employees': empNo, 'Employees': empArr}})
         utility.employeeDB.insert_one({
             '_id': id, 
@@ -26,7 +28,7 @@ class Employee:
             'Address': self.address, 
             'Branch': self.branch, 
             'Date Of Joining': self.dateOfJoining,
-            'Password': utility.generateRandomString()})
+            'Password': pw})
 
 
 def changePassword(employeeMail, newPassword) -> None:

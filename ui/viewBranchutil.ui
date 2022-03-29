@@ -117,7 +117,7 @@ border-radius: 10px</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>50</y>
+       <y>10</y>
        <width>321</width>
        <height>51</height>
       </rect>
@@ -128,30 +128,30 @@ color: rgb(222,24,24);
 </string>
      </property>
      <property name="text">
-      <string>View Branch Util</string>
+      <string>View Branch</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_17">
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>100</y>
-       <width>421</width>
-       <height>61</height>
+       <y>60</y>
+       <width>571</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 25 13pt &quot;Calibri&quot;;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the details of the branch you wish&lt;br/&gt;to view. Fill any field to search&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the details of the branch you wish to view. Fill any field to search&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QPushButton" name="searchButton">
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>210</y>
+       <x>510</x>
+       <y>120</y>
        <width>191</width>
        <height>61</height>
       </rect>
@@ -178,7 +178,7 @@ border-color: rgb(222,24,24)
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>220</y>
+       <y>130</y>
        <width>381</width>
        <height>41</height>
       </rect>
@@ -207,7 +207,7 @@ color: #808080</string>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>185</y>
+       <y>95</y>
        <width>141</width>
        <height>31</height>
       </rect>
@@ -224,7 +224,7 @@ font: 25 14pt &quot;Calibri&quot;;</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>350</y>
+       <y>190</y>
        <width>301</width>
        <height>51</height>
       </rect>
@@ -242,9 +242,9 @@ color: rgb(222,24,24);
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>410</y>
+       <y>230</y>
        <width>851</width>
-       <height>251</height>
+       <height>131</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -252,49 +252,227 @@ color: rgb(222,24,24);
 background-color: '#eeeeee'
 }</string>
      </property>
-     <widget class="QTableWidget" name="table">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>831</width>
-        <height>211</height>
-       </rect>
+    </widget>
+    <widget class="QPushButton" name="searchConsignmentButton">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>370</y>
+       <width>191</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
+color: white;
+background-color: rgb(222, 24, 24);
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
+     </property>
+     <property name="text">
+      <string>Search</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>390</y>
+       <width>331</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Consignments Headed to This Branch</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="table">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>250</y>
+       <width>831</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <column>
+      <property name="text">
+       <string>Location</string>
       </property>
-      <property name="styleSheet">
-       <string notr="true"/>
+     </column>
+     <column>
+      <property name="text">
+       <string>Address</string>
       </property>
-      <column>
-       <property name="text">
-        <string>Location</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Address</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>No. Of Employees</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Revenue</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Avg. Waiting Time For Consignments</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>No. Of Consignments Delivered</string>
-       </property>
-      </column>
-     </widget>
+     </column>
+     <column>
+      <property name="text">
+       <string>No. Of Employees</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Revenue</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Avg. Waiting Time For Consignments</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>No. Of Consignments Delivered</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QTableWidget" name="consignmentTable">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>440</y>
+       <width>841</width>
+       <height>251</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <column>
+      <property name="text">
+       <string>ID</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Volume</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Sender Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Sender Address</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Sender Mob. No.</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Sender Mail</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Receiver Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Receiver Address</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Receiver Mob. No.</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Time Of Arrival</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Time Of Dispatch</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Cost</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>At Branch</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Destination</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Status</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>700</y>
+       <width>291</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(222,24,24);
+font: 25 14pt &quot;Calibri&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Net Cost Of Above Consignments</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="costLineEdit">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>690</y>
+       <width>151</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Calibri</family>
+       <pointsize>12</pointsize>
+       <weight>3</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+     </property>
     </widget>
     <zorder>widget_2</zorder>
     <zorder>label_16</zorder>
@@ -303,6 +481,12 @@ background-color: '#eeeeee'
     <zorder>locationLineEdit</zorder>
     <zorder>label_12</zorder>
     <zorder>label_4</zorder>
+    <zorder>searchConsignmentButton</zorder>
+    <zorder>label_13</zorder>
+    <zorder>table</zorder>
+    <zorder>consignmentTable</zorder>
+    <zorder>label_14</zorder>
+    <zorder>costLineEdit</zorder>
    </widget>
   </widget>
  </widget>

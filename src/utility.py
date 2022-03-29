@@ -19,7 +19,7 @@ def closestBranch(address):
     city = address.split(', ')[-1]
     minDistance = 100000
     closestBranch = ''
-    for branch in branchDB.find():
+    for branch in list(branchDB.find()):
         if distance(city, branch['Location']) < minDistance:
             minDistance = distance(city, branch['Location'])
             closestBranch = branch['Location']
@@ -108,13 +108,15 @@ def nextAvailableTruck(branch, consign):
     return truck
 
 def loadUnloadedConsignments(branch):
-    consignments = consignDB.find({'At Branch': branch, 'Status': 'Unloaded'})
-    curTruck = nextAvailableTruck(branch)
-    for consignment in consignments:
+    consignments = list(consignDB.find({'At Branch': branch, 'Status': 'Unloaded'}))
+    if len(consignments) == 0:
+        return
+    curTruck = nextAvailableTruck(branch, consignments[0])
+    for i in range(len(consignments)):
+        if consign.loadConsignment(consignments[i]['_id'], curTruck):
+            curTruck = nextAvailableTruck(branch, consignments[i])
         if curTruck is None:
             return
-        if consign.loadConsignment(consignment['_id'], curTruck):
-            curTruck = nextAvailableTruck(branch, consignment)
 
 database = None
 settings = None

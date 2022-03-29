@@ -104,7 +104,7 @@ class enterConsignDetailsScreen(QDialog):
 
     def createConsignment(self):
         createdConsign = Consign(
-            self.senderMailLineEdit.text(), 
+            self.senderNameLineEdit.text(), 
             self.receiverNameLineEdit.text(), 
             self.senderMobileNoLineEdit.text(), 
             self.receiverMobileNoLineEdit.text(),
@@ -113,7 +113,7 @@ class enterConsignDetailsScreen(QDialog):
             self.volumeLineEdit.text(),
             utility.employeeUser['Branch'],
             self.senderMailLineEdit.text())
-        self.senderMailLineEdit.setText("") 
+        self.senderNameLineEdit.setText("") 
         self.receiverNameLineEdit.setText("")
         self.senderMobileNoLineEdit.setText("") 
         self.receiverMobileNoLineEdit.setText("")
@@ -134,7 +134,7 @@ class truckScreen(QDialog): ####### WIP
         loadUi('ui/employeeTruckConfirm.ui', self)
         self.backButton.clicked.connect(self.back)
         self.confirmTruckButton.clicked.connect(self.confirmArrivalOfTruck)
-        trucksHeaded = utility.truckDB.find({'Next Destination': utility.employeeUser['Branch']})
+        trucksHeaded = list(utility.truckDB.find({'Next Destination': utility.employeeUser['Branch']}))
         self.comboBox.clear()
         for t in trucksHeaded:
             self.comboBox.addItem(str(t['Number Plate']))
@@ -216,14 +216,16 @@ class ViewConsignmentScreen(QDialog):
         super(ViewConsignmentScreen, self).__init__()
         self.setObjectName("View Consignment")
         loadUi('ui/viewConsignmentutil.ui', self)
-        self.searchConsignment.clicked.connect(self.searchConsignment)
+        self.searchConsignmentButton.clicked.connect(self.searchConsignment)
         self.backButton.clicked.connect(self.back)
         self.show()
 
     def searchConsignment(self):
         res = list(manager.consignmentQuery(self.IDLineEdit.text(), self.senderNameLineEdit.text(), self.receiverNameLineEdit.text()))
-        self.consignmentTable.setRowCount(0)
-        self.employeeTable.setRowCount(len(res))
+        while self.consignmentTable.rowCount() > 0:
+            self.consignmentTable.removeRow(0)
+        self.consignmentTable.setRowCount(len(res))
+        print(len(res))
         for i in range(len(res)):
             self.consignmentTable.setItem(i, 0, QTableWidgetItem(str(res[i]['_id'])))
             self.consignmentTable.setItem(i, 2, QTableWidgetItem(str(res[i]['Sender Name'])))
@@ -312,6 +314,8 @@ class ViewTrucksScreen(QDialog):
         loadUi('ui/viewTruckUtil.ui', self)
         self.backButton.clicked.connect(self.goBack)
         self.searchButton.clicked.connect(self.query)
+        self.historyButton.clicked.connect(self.history)
+        self.calcButton.clicked.connect(self.calcIdleTime)
         self.show()
 
     def goBack(self):
@@ -331,6 +335,19 @@ class ViewTrucksScreen(QDialog):
         self.truckTable.setItem(0, 8, QTableWidgetItem(str(res['Next Destination'])))
         self.truckTable.setItem(0, 9, QTableWidgetItem(str(res['Volume Loaded'])))
         self.truckTable.setItem(0, 10, QTableWidgetItem(str(res['Dispatched At'])))
+
+    def history(self):
+        history = manager.viewTruckUsageInPeriod(self.IDLineEdit.text(), self.plateNumberLineEdit.text(), self.fromLineEdit.text(), self.toLineEdit.text())
+        self.historyTable.setRowCount(0)
+        self.historyTable.setRowCount(len(history))
+        for i in range(len(history)):
+            self.historyTable.setItem(i, 0, QTableWidgetItem(str(history[i]['From'])))
+            self.historyTable.setItem(i, 1, QTableWidgetItem(str(history[i]['To'])))
+            self.historyTable.setItem(i, 2, QTableWidgetItem(str(history[i]['Dispatched At'])))
+            self.historyTable.setItem(i, 3, QTableWidgetItem(str(history[i]['Delivered At'])))
+
+    def calcIdleTime(self):
+        self.idleTimeLineEdit.setText(str(manager.calculateIdleTimeOfTruck(self.IDLineEdit.text(), self.plateNumberLineEdit.text())))
 
 
 class AddTruckScreen(QDialog):
@@ -374,6 +391,7 @@ class ViewBranchScreen(QDialog):
         self.table.setColumnWidth(2, 200)
         self.table.setColumnWidth(4, 300)
         self.table.setColumnWidth(5, 300)
+        self.searchConsignmentButton.clicked.connect(self.searchConsignmentsHeaded)
         self.show()
 
     def goBack(self):
@@ -392,6 +410,29 @@ class ViewBranchScreen(QDialog):
         self.table.setItem(0, 3, QtWidgets.QTableWidgetItem(str(res['Revenue'])))
         self.table.setItem(0, 4, QtWidgets.QTableWidgetItem(str(res['Avg. Waiting Time for Consignments'])))
         self.table.setItem(0, 5, QtWidgets.QTableWidgetItem(str(res['No. of Consignments Delivered'])))
+
+    def searchConsignmentsHeaded(self):
+        cost, res = manager.queryConsignmentsHeadedToSameBranch(self.locationLineEdit.text())
+        self.costLineEdit.setText(str(cost))
+        while self.consignmentTable.rowCount() > 0:
+            self.consignmentTable.removeRow(0)
+        self.consignmentTable.setRowCount(len(res))
+        for i in range(len(res)):
+            self.consignmentTable.setItem(i, 0, QTableWidgetItem(str(res[i]['_id'])))
+            self.consignmentTable.setItem(i, 2, QTableWidgetItem(str(res[i]['Sender Name'])))
+            self.consignmentTable.setItem(i, 6, QTableWidgetItem(str(res[i]['Receiver Name'])))
+            self.consignmentTable.setItem(i, 4, QTableWidgetItem(str(res[i]['Sender Phone'])))
+            self.consignmentTable.setItem(i, 8, QTableWidgetItem(str(res[i]['Receiver Phone'])))
+            self.consignmentTable.setItem(i, 3, QTableWidgetItem(str(res[i]['Sender Address'])))
+            self.consignmentTable.setItem(i, 7, QTableWidgetItem(str(res[i]['Receiver Address'])))
+            self.consignmentTable.setItem(i, 1, QTableWidgetItem(str(res[i]['Volume'])))
+            self.consignmentTable.setItem(i, 12, QTableWidgetItem(str(res[i]['At Branch'])))
+            self.consignmentTable.setItem(i, 5, QTableWidgetItem(str(res[i]['Sender Mail'])))
+            self.consignmentTable.setItem(i, 9, QTableWidgetItem(str(res[i]['Date Of Arrival'])))
+            self.consignmentTable.setItem(i, 14, QTableWidgetItem(str(res[i]['Status'])))
+            self.consignmentTable.setItem(i, 10, QTableWidgetItem(str(res[i]['Date Of Dispatch'])))
+            self.consignmentTable.setItem(i, 11, QTableWidgetItem(str(res[i]['Cost'])))
+            self.consignmentTable.setItem(i, 13, QTableWidgetItem(str(res[i]['Destination'])))
 
 
 class AddBranchScreen(QDialog):

@@ -193,7 +193,7 @@ font: 25 12pt &quot;Calibri&quot;;
 color: #808080</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="searchConsignment">
+    <widget class="QPushButton" name="searchConsignmentButton">
      <property name="geometry">
       <rect>
        <x>540</x>
@@ -437,7 +437,7 @@ color: #808080</string>
     <zorder>label_17</zorder>
     <zorder>label_11</zorder>
     <zorder>receiverNameLineEdit</zorder>
-    <zorder>searchConsignment</zorder>
+    <zorder>searchConsignmentButton</zorder>
     <zorder>IDLineEdit</zorder>
     <zorder>label_12</zorder>
     <zorder>label_4</zorder>
