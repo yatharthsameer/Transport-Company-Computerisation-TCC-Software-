@@ -558,6 +558,10 @@ class AddBranchScreen(QDialog):         # add branch screen
         if createdBranch.location == '' or createdBranch.address == '':
             QMessageBox.information(self, "Error", "Please fill all the fields")
             return
+        if utility.branchDB.find_one({'Location': createdBranch.location}) != None:
+            QMessageBox.warning(self, 'Error', 'This branch already exists')
+            return
+        QMessageBox.information(self, "Success", "Branch Created in {}".format(createdBranch.location))
         self.branchLocationLineEdit.setText('')
         self.addressLineEdit.setText('')
         createdBranch.convertToDictAndUpload()

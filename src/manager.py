@@ -24,7 +24,7 @@ def consignmentQuery(id, sendername, receiverName):         # returns consignmen
     if id != '':
         return utility.consignDB.find({'_id': int(id)})
     elif sendername != '':
-        return utility.consignDB.find({'Sender Name': sendername, 'Receiver Name': sendername})
+        return utility.consignDB.find({'Sender Name': sendername})
     else:
         return utility.consignDB.find({'Receiver Name': receiverName})
 

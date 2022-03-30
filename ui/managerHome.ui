@@ -47,9 +47,9 @@
    <widget class="QWidget" name="employeeWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>500</x>
       <y>40</y>
-      <width>401</width>
+      <width>441</width>
       <height>451</height>
      </rect>
     </property>
@@ -183,9 +183,9 @@ color: white</string>
    <widget class="QWidget" name="consignmentsWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>500</x>
       <y>520</y>
-      <width>341</width>
+      <width>311</width>
       <height>281</height>
      </rect>
     </property>
@@ -196,8 +196,8 @@ border-radius: 10px</string>
     <widget class="QPushButton" name="consignmentsButton">
      <property name="geometry">
       <rect>
-       <x>90</x>
-       <y>200</y>
+       <x>40</x>
+       <y>190</y>
        <width>231</width>
        <height>61</height>
       </rect>
@@ -487,7 +487,7 @@ background-color: &quot;#222222&quot;
    <widget class="QWidget" name="consignmentsWidget_2" native="true">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>60</x>
       <y>520</y>
       <width>391</width>
       <height>281</height>
@@ -604,10 +604,10 @@ color: #808080</string>
    <widget class="QWidget" name="consignmentsWidget_3" native="true">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>60</x>
       <y>220</y>
       <width>391</width>
-      <height>281</height>
+      <height>271</height>
      </rect>
     </property>
     <property name="styleSheet">
