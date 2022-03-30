@@ -27,6 +27,8 @@ For running the code:
 
 7. For the sake of simplicity, use 'admin' as both username and password to enter as manager.
 
-8. Put actual emails for employees or you will not have any idea about the password, since no one sees them.
+8. Put actual emails for employees or you will not have any idea about the password, since no one else sees them, and the password is mailed directly to the employee's mail ID.
 
-9. After any truck is dispatched, you will recieve a system alert that the truck has dispatched. These will be go to respective destinations, and you need to accept these trucks as an employee of the destination branch, which will prompt the truck to unload at the destination.
+9. After any truck is dispatched, you will recieve a system alert that the truck has dispatched. These will go to respective destinations, and you need to accept these trucks as an employee of the destination branch, which will prompt the truck to unload at the destination.
+
+10. Beware of any tempRunner files in the source directory, delete them immediately after seeing them.
