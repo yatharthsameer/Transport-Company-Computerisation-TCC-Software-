@@ -360,6 +360,9 @@ class AddEmployeeScreen(QDialog):               # add employee screen
         if len(self.phoneNumberLineEdit.text()) != 10:
             QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be 10 digits")
             return
+        if utility.branchDB.find_one({"Location":self.branchLocationLineEdit.text()}) is None:
+            QMessageBox.warning(self, "Invalid Branch", "Branch does not exist")
+            return
         createdEmployee = Employee(
             self.nameLineEdit.text(),
             self.phoneNumberLineEdit.text(),
@@ -456,8 +459,11 @@ class AddTruckScreen(QDialog):          # add truck screen
         if len(self.driverNumberLineEdit.text()) != 10:
             QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be 10 digits")
             return
-        if utility.truckDB.find_one({'_id': self.numberPlateLineEdit.text()}) is not None:
+        if utility.truckDB.find_one({'Number Plate': self.numberPlateLineEdit.text()}) is not None:
             QMessageBox.warning(self, 'Error', 'This truck already exists')
+            return
+        if utility.branchDB.find_one({'Location': self.locationLineEdit.text()}) is None:
+            QMessageBox.warning(self, 'Error', 'This branch does not exist')
             return
         createdTruck = Truck(
             self.numberPlateLineEdit.text(),
