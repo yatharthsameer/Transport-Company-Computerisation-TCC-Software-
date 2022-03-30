@@ -203,6 +203,7 @@ class managerScreen(QDialog):
         self.addBranchButton.clicked.connect(self.goToAddBranch)
         self.viewBranchesButton.clicked.connect(self.goToViewBranch)
         self.changeRateButton.clicked.connect(self.changeRateOf)
+        self.viewStatButton.clicked.connect(manager.statsPerBranch)
         self.show()
 
     def goBack(self):           # back to home

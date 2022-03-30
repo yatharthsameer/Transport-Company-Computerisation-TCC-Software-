@@ -19,8 +19,3 @@ consignSample = {
 bill.bill(consignSample)
 '''
 
-from datetime import datetime, date
-import utility
-s1 = datetime.now()
-s2 = datetime.strptime('31-03-22', '%d-%m-%y')
-print (utility.deltaTimeToHours(s1, s2))

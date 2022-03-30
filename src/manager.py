@@ -1,6 +1,7 @@
 from datetime import datetime
 import pymongo
 import utility
+import matplotlib.pyplot as plt
 
 
 def branchQuery(branchName):        # returns branch object after searching
@@ -59,3 +60,16 @@ def viewTruckUsageInPeriod(id, plate, start, end):          # filters truck usag
 
 def changeRate(newRate):
     utility.Rate = newRate
+
+def statsPerBranch():
+    branches = list(utility.branchDB.find())
+    colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'black', 'brown', 'pink', 'gray', 'cyan']
+    usedColors = []
+    for i in range(len(colors)):
+        usedColors.append(colors[i%len(colors)])
+    dic = {}
+    for branch in branches:
+        dic[branch['Location']] = branch['Average Waiting Time for Consignments']
+    plt.bar(*zip(*sorted(dic.items())), color=usedColors)
+    plt.title('Average Waiting Time (Hours) for Consignments per Branch')
+    plt.show()
