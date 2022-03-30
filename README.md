@@ -3,6 +3,8 @@ SE Lab Project
 
 For running the code:
 
+# CAMPUS LAN/WIFI BLOCKS THIS OUT. USE MOBILE DATA.
+
 1. Install Libraries:\
     1.1 PyQt5\
     1.2 pymongo\
@@ -19,7 +21,7 @@ For running the code:
 
 4. Always put reciever's address in a format: 'anywhere, somewhere, City'. The city must be especially written after a ', ' only.
 
-5. Make sure that all cities mentioned in Branch, reciever address must be a real city.
+5. Make sure that all cities mentioned in Branch, reciever address is a real city.
 
 6. Always initialise trucks in a branch city only.
 
