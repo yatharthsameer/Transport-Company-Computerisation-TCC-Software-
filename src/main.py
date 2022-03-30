@@ -456,6 +456,9 @@ class AddTruckScreen(QDialog):          # add truck screen
         if len(self.driverNumberLineEdit.text()) != 10:
             QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be 10 digits")
             return
+        if utility.truckDB.find_one({'_id': self.numberPlateLineEdit.text()}) is not None:
+            QMessageBox.warning(self, 'Error', 'This truck already exists')
+            return
         createdTruck = Truck(
             self.numberPlateLineEdit.text(),
             self.locationLineEdit.text(),
