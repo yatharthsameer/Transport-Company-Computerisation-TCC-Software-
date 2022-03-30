@@ -46,7 +46,7 @@ class Branch:
             'Number of Consignments Delivered': 0})
 
     def convertFromDict(dict):
-        return Branch(dict['Location'], dict['Address'], dict['Employees'], dict['Number Of Employees'], dict['Revenue'])
+        return Branch(dict['Location'], dict['Address'])
 
 
 def checkLogin(username, password):         # returns true if username and password are correct for employee, 'SU' if the manager, else False
