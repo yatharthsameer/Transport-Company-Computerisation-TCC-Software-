@@ -105,6 +105,11 @@ class enterConsignDetailsScreen(QDialog):       # enter consignment details page
         widget.removeWidget(self)
 
     def createConsignment(self):       # create consignment and add to database
+        try:
+            a = int(createdConsign.volume)
+        except:
+            QMessageBox.warning(self, "Invalid Volume", "Volume must be a number")
+            return
         createdConsign = Consign(
             self.senderNameLineEdit.text(), 
             self.receiverNameLineEdit.text(), 
@@ -118,11 +123,6 @@ class enterConsignDetailsScreen(QDialog):       # enter consignment details page
         # if any field is empty discard the operation
         if createdConsign.SenderName == "" or createdConsign.ReceiverName == "" or createdConsign.SenderPhone == "" or createdConsign.ReceiverPhone == "" or createdConsign.SenderAddress == "" or createdConsign.ReceiverAddress == "" or createdConsign.volume == "":
             QMessageBox.warning(self, "Empty Field", "Please fill all the fields")
-            return
-        try:
-            a = int(createdConsign.volume)
-        except:
-            QMessageBox.warning(self, "Invalid Volume", "Volume must be a number")
             return
         self.senderNameLineEdit.setText("") 
         self.receiverNameLineEdit.setText("")
