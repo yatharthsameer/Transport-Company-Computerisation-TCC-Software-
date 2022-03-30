@@ -82,6 +82,7 @@ def loadConsignment(consignID, truck) -> None:
     utility.branchDB.update_one({'Location': consign['At Branch']}, {'$set': {'Revenue': utility.branchDB.find_one({'Location': consign['At Branch']})['Revenue'] + cost}})
     utility.truckDB.update_one({'_id': truckID}, {'$set': {'Volume Loaded': curVol, 'Consignments Loaded': loaded}})
     if curVol > 500:
+        QMessageBox.information(None, 'Truck Full', 'Truck {} will be dispatched to {}.'.format(truck['Number Plate'], consign['Destination']))
         dispatchTruck(truckID)
         return True
     return False

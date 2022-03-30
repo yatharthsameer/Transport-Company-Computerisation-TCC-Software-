@@ -1,6 +1,7 @@
 import pymongo
 import utility
 import consign
+from PyQt5.QtWidgets import QMessageBox
 
 
 class Truck:
@@ -39,11 +40,11 @@ def dispatchTruck(truckID) -> None:                                        # dis
     utility.truckDB.update_one({'_id': truckID}, {'$set': {'Status': 'Enroute', 'Dispatched At': utility.now()}})
 
 def unloadTruck(truckPlate) -> None:                              # unload truck and update statistics and history
+    QMessageBox.information(None, 'Incoming Truck', 'Truck {} Unloaded'.format(truckPlate))
     truck = utility.truckDB.find_one({'Number Plate': truckPlate})
     num = len(truck['Consignments Loaded'])
     loc = truck['Next Destination']
     prevLoc = truck['Location']
-    deliveriesByBranch = utility.branchDB.find_one({'Location': prevLoc})['Number of Consignments Delivered']
     History = truck['Delivery History']
     History.append({'From': prevLoc, 'To': loc, 'Dispatched At': truck['Dispatched At'], 'Delivered At': utility.now()})
     for consign in truck['Consignments Loaded']:
