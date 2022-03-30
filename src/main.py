@@ -3,7 +3,7 @@ from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QStackedWidget, QTableWidgetItem
 from PyQt5 import QtCore, QtGui, QtWidgets
 from consign import Consign
-from truck import Truck, unloadTruck
+from truck import Truck, unloadTruck, changeDriver
 from employee import Employee
 from utility import checkLogin
 import utility
@@ -106,9 +106,18 @@ class enterConsignDetailsScreen(QDialog):       # enter consignment details page
 
     def createConsignment(self):       # create consignment and add to database
         try:
-            a = int(createdConsign.volume)
+            a = int(self.volumeLineEdit.text())
         except:
             QMessageBox.warning(self, "Invalid Volume", "Volume must be a number")
+            return
+        try:
+            b = int(self.senderMobileNoLineEdit.text())
+            b = int(self.receiverMobileNoLineEdit.text())
+        except:
+            QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be a number")
+            return
+        if len(self.senderMobileNoLineEdit.text()) != 10 or len(self.receiverMobileNoLineEdit.text()) != 10:
+            QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be 10 digits")
             return
         createdConsign = Consign(
             self.senderNameLineEdit.text(), 
@@ -145,6 +154,7 @@ class truckScreen(QDialog):         # truck screen
         loadUi('ui/employeeTruckConfirm.ui', self)
         self.backButton.clicked.connect(self.back)
         self.confirmTruckButton.clicked.connect(self.confirmArrivalOfTruck)
+        self.changeDriverButton.clicked.connect(self.changeDriverByPlate)
         trucksHeaded = list(utility.truckDB.find({'Next Destination': utility.employeeUser['Branch']}))
         self.comboBox.clear()
         for t in trucksHeaded:
@@ -159,7 +169,21 @@ class truckScreen(QDialog):         # truck screen
         self.comboBox.removeItem(self.comboBox.currentIndex())
         unloadTruck(selectedPlate)
         utility.loadUnloadedConsignments(utility.employeeUser['Branch'])
-        
+
+    def changeDriverByPlate(self):
+        try:
+            b = int(self.driverNumber.text())
+        except:
+            QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be a number")
+            return
+        if len(self.driverNumber.text()) != 10:
+            QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be 10 digits")
+            return
+        try:            # change driver by truck number plate 
+            changeDriver(self.driverName.text(), self.driverNumber.text(), self.numberPlate.text())
+            QMessageBox.information(self, "Driver Changed", "Driver changed successfully")   
+        except:
+            QMessageBox.warning(self, "Invalid Plate", "Invalid plate number")   
 
 
 class managerScreen(QDialog):
@@ -169,6 +193,7 @@ class managerScreen(QDialog):
         self.setObjectName("Manager")
         loadUi('ui/managerHome.ui', self)
         widget.setWindowTitle("TCC Manager")
+        self.rateLabel.setText("Rate: " + str(utility.Rate))
         self.viewEmployeeButton.clicked.connect(self.goToViewEmployee)
         self.addEmployeeButton.clicked.connect(self.goToAddEmployee)
         self.backButton.clicked.connect(self.goBack)
@@ -177,6 +202,7 @@ class managerScreen(QDialog):
         self.consignmentsButton.clicked.connect(self.goToViewConsignment)
         self.addBranchButton.clicked.connect(self.goToAddBranch)
         self.viewBranchesButton.clicked.connect(self.goToViewBranch)
+        self.changeRateButton.clicked.connect(self.changeRateOf)
         self.show()
 
     def goBack(self):           # back to home
@@ -219,6 +245,20 @@ class managerScreen(QDialog):
         currentWindow = ViewConsignmentScreen()
         widget.addWidget(currentWindow)
         widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    def changeRateOf(self):
+        try:
+            rate = float(self.rateLineEdit.text())
+        except:
+            QMessageBox.warning(self, "Invalid Rate", "Rate must be a number")
+            return
+        if rate < 0:
+            QMessageBox.warning(self, "Invalid Rate", "Rate must be positive")
+            return
+        utility.Rate = rate
+        self.rateLineEdit.setText("")
+        self.rateLabel.setText("Rate: " + str(utility.Rate))
+        QMessageBox.information(self, "Rate Changed", "Rate changed successfully")
 
 
 class ViewConsignmentScreen(QDialog):           # view consignments screen
@@ -268,6 +308,7 @@ class ViewEmployeeScreen(QDialog):          # view employee screen
         loadUi('ui/viewEmployeeUtil.ui', self)
         self.backButton.clicked.connect(self.goBack)
         self.searchButton.clicked.connect(self.query)
+        self.fireButton.clicked.connect(self.fireEmployee)
         self.show()
 
     def goBack(self):               # back to manager home
@@ -286,6 +327,14 @@ class ViewEmployeeScreen(QDialog):          # view employee screen
             self.employeeTable.setItem(i, 5, QTableWidgetItem(str(res[i]['Branch'])))
             self.employeeTable.setItem(i, 6, QTableWidgetItem(str(res[i]['Date Of Joining'])))
 
+    def fireEmployee(self):             # remove employee from database
+        try:
+            utility.employeeDB.delete_one({"_id": int(self.IDLineEdit.text())})
+            QMessageBox.information(self, 'Success', 'Employee Fired')
+        except:
+            QMessageBox.warning(self, "Error", "Employee not found")
+
+
 
 class AddEmployeeScreen(QDialog):               # add employee screen
     def __init__(self):
@@ -302,6 +351,14 @@ class AddEmployeeScreen(QDialog):               # add employee screen
         widget.removeWidget(self)
 
     def createEmployee(self):               # create employee function
+        try:
+            b = int(self.phoneNumberLineEdit.text())
+        except:
+            QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be a number")
+            return
+        if len(self.phoneNumberLineEdit.text()) != 10:
+            QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be 10 digits")
+            return
         createdEmployee = Employee(
             self.nameLineEdit.text(),
             self.phoneNumberLineEdit.text(),
@@ -390,6 +447,14 @@ class AddTruckScreen(QDialog):          # add truck screen
         widget.removeWidget(self)
 
     def createTruck(self):          # create truck function
+        try:
+            b = int(self.driverNumberLineEdit.text())
+        except:
+            QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be a number")
+            return
+        if len(self.driverNumberLineEdit.text()) != 10:
+            QMessageBox.warning(self, "Invalid Mobile Number", "Mobile number must be 10 digits")
+            return
         createdTruck = Truck(
             self.numberPlateLineEdit.text(),
             self.locationLineEdit.text(),
@@ -439,8 +504,8 @@ class ViewBranchScreen(QDialog):            # view branch screen
         self.table.setItem(0, 1, QtWidgets.QTableWidgetItem(res['Address']))
         self.table.setItem(0, 2, QtWidgets.QTableWidgetItem(str(res['Number Of Employees'])))
         self.table.setItem(0, 3, QtWidgets.QTableWidgetItem(str(res['Revenue'])))
-        self.table.setItem(0, 4, QtWidgets.QTableWidgetItem(str(res['Avg. Waiting Time for Consignments'])))
-        self.table.setItem(0, 5, QtWidgets.QTableWidgetItem(str(res['No. of Consignments Delivered'])))
+        self.table.setItem(0, 4, QtWidgets.QTableWidgetItem(str(res['Average Waiting Time for Consignments'])))
+        self.table.setItem(0, 5, QtWidgets.QTableWidgetItem(str(res['Number of Consignments Delivered'])))
 
     def searchConsignmentsHeaded(self):             # search consignments headed to this branch 
         try:

@@ -484,6 +484,123 @@ background-color: &quot;#222222&quot;
      <string>&lt;-</string>
     </property>
    </widget>
+   <widget class="QWidget" name="consignmentsWidget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>340</y>
+      <width>391</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;
+border-radius: 10px</string>
+    </property>
+    <widget class="QPushButton" name="changeRateButton">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>210</y>
+       <width>231</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+font: 75 20pt &quot;League Spartan&quot;;
+color: white;
+background-color: rgb(222, 24, 24);
+border-radius: 15px
+}
+QPushButton:hover{
+background-color: '#eeeeee';
+color: rgb(222, 24, 24);
+border: 2px;
+border-color: rgb(222,24,24)
+}</string>
+     </property>
+     <property name="text">
+      <string>Change</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>301</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 25 12pt &quot;Calibri&quot;;</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Change rate of charging consignments.&lt;/p&gt;&lt;p&gt;Cost = rate x volume x log(100 + distance)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>20</y>
+       <width>271</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 75 24pt &quot;League Spartan&quot;;
+color: rgb(222,24,24);
+text-decoration: underline;</string>
+     </property>
+     <property name="text">
+      <string>Change Rate</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="rateLineEdit">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>220</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Calibri</family>
+       <pointsize>12</pointsize>
+       <weight>3</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #fff3f3;
+border-style: outset;
+border-width: 2px;
+border-radius: 15px;
+border-color: #fff3f3;
+padding-left: 10px;
+font: 25 12pt &quot;Calibri&quot;;
+color: #808080</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rateLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>170</y>
+       <width>161</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Rate = </string>
+     </property>
+    </widget>
+   </widget>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
@@ -492,6 +609,7 @@ background-color: &quot;#222222&quot;
    <zorder>employeeWidget</zorder>
    <zorder>addBranchWidget</zorder>
    <zorder>backButton</zorder>
+   <zorder>consignmentsWidget_2</zorder>
   </widget>
  </widget>
  <resources/>

@@ -45,7 +45,7 @@ def calculateIdleTimeOfTruck(id, plate):            # returns idle time of truck
         netIdleTime += utility.deltaTimeToHours(utility.stringToDateTime(truck['Delivery History'][-1]['Delivered At']), utility.stringToDateTime(utility.now()))
     else:
         netIdleTime += utility.deltaTimeToHours(utility.stringToDateTime(truck['Delivery History'][-1]['Delivered At']), utility.stringToDateTime(truck['Dispatched At']))
-    return netIdleTime * 24 / utility.deltaTimeToHours(utility.stringToDateTime(truck['Time Of Purchase']), utility.stringToDateTime(utility.stringToDateTime(utility.now())))
+    return netIdleTime * 24 / utility.deltaTimeToHours(utility.stringToDateTime(truck['Time Of Purchase']), utility.stringToDateTime(utility.now()))
 
 def viewTruckUsageInPeriod(id, plate, start, end):          # filters truck usage history and returns a list
     truck = truckQuery(id, plate)
@@ -56,3 +56,6 @@ def viewTruckUsageInPeriod(id, plate, start, end):          # filters truck usag
         if utility.stringToDateTime(delivery['Dispatched At']) >= start and utility.stringToDateTime(delivery['Delivered At']) <= end:
             result.append(delivery)
     return result
+
+def changeRate(newRate):
+    utility.Rate = newRate

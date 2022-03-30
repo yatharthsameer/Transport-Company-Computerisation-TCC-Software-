@@ -49,17 +49,20 @@ def dispatchConsignment(consignID, truckID) -> None:
     # update dispatch date, delivered by truck, status, At Branch
     # BILL HERE
     # update statistics here
+    prevLoc = utility.consignDB.find_one({'_id': consignID})['At Branch']
     utility.consignDB.update_one({'_id': consignID}, {'$set': {'Date Of Dispatch': utility.now(), 'Delivered By Truck': truckID, 'At Branch': 'NA', 'Status': 'Dispatched'}})
     consign = utility.consignDB.find_one({'_id': consignID})
-    branch = utility.branchDB.find_one({'Location': consign['Destination']})
-    oldAvg = branch['Avg. Waiting Time for Consignments']
-    oldNo = branch['No. of Consignments Delivered']
-    newAvg = (oldAvg * oldNo + utility.deltaTimeToHours(utility.stringToDateTime(utility.now()), utility.stringToDateTime(consign['Date Of Arrival']))) / (oldNo + 1)
-    utility.branchDB.update_one({'Location': consign['At Branch']}, {'$set': {'Avg. Waiting Time for Consignments': newAvg, 'No. of Consignments Delivered': oldNo + 1}})
+    branch = utility.branchDB.find_one({'Location': prevLoc})
+    oldAvg = branch['Average Waiting Time for Consignments']
+    oldNo = branch['Number of Consignments Delivered']
+    newAvg = (oldAvg * oldNo + utility.deltaTimeToHours(utility.stringToDateTime(consign['Date Of Arrival']), utility.stringToDateTime(utility.now()))) / (oldNo + 1)
+    utility.branchDB.update_one({'Location': prevLoc}, {'$set': {'Average Waiting Time for Consignments': newAvg, 'Number of Consignments Delivered': oldNo + 1}})
     bill(consign)
 
 def loadConsignment(consignID, truck) -> None:
     # update truck volume, next destination if NA, calculate cost, update branch revenue, consign status, delivered by 
+    if truck is None:
+        return
     curVol = truck['Volume Loaded']
     truckID = truck['_id']
     loaded = truck['Consignments Loaded']
@@ -73,7 +76,7 @@ def loadConsignment(consignID, truck) -> None:
     if truck['Next Destination'] == 'NA':
         truck['Next Destination'] = consign['Destination']
         utility.truckDB.update_one({'_id': truckID}, {'$set': {'Next Destination': truck['Next Destination']}})
-    cost = int(100 * newVol * log(200 + utility.distance(consign['At Branch'], truck['Next Destination'])))
+    cost = int(utility.Rate * newVol * log(100 + utility.distance(consign['At Branch'], truck['Next Destination'])))
     curVol += newVol
     utility.consignDB.update_one({'_id': consignID}, {'$set': {'Status': 'Loaded on truck ' + truck['Number Plate'], 'Delivered By Truck': truckID, 'Cost': cost}})
     utility.branchDB.update_one({'Location': consign['At Branch']}, {'$set': {'Revenue': utility.branchDB.find_one({'Location': consign['At Branch']})['Revenue'] + cost}})
