@@ -1,5 +1,17 @@
 # Transport Company Computerisation (TCC) Software
-SE Lab Project
+SE Lab Project Term Project:
+
+Team Members:
+
+Leader:
+Yatharth Sameer
+
+
+Sqaud: 
+Atulya Krishna
+Abhinav Sen        
+
+
 
 For running the code:
 
