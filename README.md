@@ -1,17 +1,7 @@
 # Transport Company Computerisation (TCC) Software
 SE Lab Project Term Project:
 
-Team Members:
-
-Leader:
-Yatharth Sameer
-
-
-Sqaud: 
-Atulya Krishna
-Abhinav Sen        
-
-
+# USE YOUR OWN MONGODB ATLAS ACCOUNT TO WORK WITH THIS. THE ORIGINALLY LINKED DATABASE IS INACTIVE
 
 For running the code:
 
